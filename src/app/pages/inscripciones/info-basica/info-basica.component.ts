@@ -1,3 +1,4 @@
+import { UbicacionService } from './../../../@core/data/ubicacion.service';
 import { FORM_PERSONA } from './form-persona';
 import { AutenticationService } from './../../../@core/utils/autentication.service';
 import { PersonaService } from './../../../@core/data/persona.service';
@@ -12,13 +13,47 @@ export class InfoBasicaComponent implements OnInit {
 
   public formulario: any;
   public usuario: any;
-
-  constructor(private persona: PersonaService, private autenticacion: AutenticationService) {
+  ejemplo:Array<Object>=[];
+  constructor(private personaService: PersonaService, private autenticacion: AutenticationService, private ubicacionService: UbicacionService) {
     this.formulario = FORM_PERSONA;
+    this.ubicacionService.get('lugar/?query=TipoLugar.Id:1')
+    .then(res => {
+      console.info("asadadW",res);
+      this.ejemplo=<Array<Object>>res;
+      this.ejemplo.forEach(element => {
+        Object.defineProperty(element, "valor",
+        Object.getOwnPropertyDescriptor(element, "Nombre"));
+      });
+      this.ejemplo.push({ Id: 0, valor: 'Seleccione su ciudad de nacimiento ...' });
+
+      let algo={
+        claseGrid: 'col-4',
+        etiqueta: 'select',
+        nombre: 'PaisNacimiento',
+        label: 'Pais de nacimiento*:',
+        requerido: true,
+        relacion: false,
+        valor: { Id: 0 },
+        opciones: this.ejemplo,
+    };
+      this.formulario.campos.push(algo);
+
+    });
+
+
+
+  }
+
+  renameKeys(obj, newKeys):Object {
+    const keyValues = Object.keys(obj).map(key => {
+      const newKey = newKeys[key] || key;
+      return { [newKey]: obj[key] };
+    });
+    return Object.assign({}, ...keyValues);
   }
 
   cargarInfoPersona(): void {
-    this.persona.get('persona/?query=Usuario:' + this.autenticacion.getPayload().sub)
+    this.personaService.get('persona/?query=Usuario:' + this.autenticacion.getPayload().sub)
         .subscribe(res => {
           if (res !== null) {
             this.usuario = res[0];
@@ -30,7 +65,7 @@ export class InfoBasicaComponent implements OnInit {
   actualizarInfoPersona(persona: any): void {
     persona.Id = this.usuario.Id;
     persona.usuario = this.usuario.Usuario;
-    this.persona.put('persona', persona)
+    this.personaService.put('persona', persona)
     .subscribe(res => {
       this.cargarInfoPersona();
     });
@@ -38,7 +73,7 @@ export class InfoBasicaComponent implements OnInit {
 
   registrarPersona(persona: any): void {
     persona.Usuario = this.autenticacion.getPayload().sub;
-    this.persona.post('persona', persona)
+    this.personaService.post('persona', persona)
         .subscribe(res => {
         this.usuario = res;
         // this.cargarInfoPersona();

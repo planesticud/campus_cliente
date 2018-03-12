@@ -40,20 +40,6 @@ export let FORM_PERSONA = {
     }, {
         claseGrid: 'col-4',
         etiqueta: 'select',
-        nombre: 'PaisNacimiento',
-        label: 'País de nacimiento*:',
-        requerido: true,
-        valor: { Id: 0 },
-        opciones: [
-            { Id: 0, valor: 'Seleccione su país de nacimiento ...' },
-            { Id: 1, valor: 'Perú' },
-            { Id: 2, valor: 'Chile' },
-            { Id: 3, valor: 'Colombia' },
-            { Id: 4, valor: 'Rusia' },
-        ],
-    }, {
-        claseGrid: 'col-4',
-        etiqueta: 'select',
         nombre: 'CiudadNacimiento',
         label: 'Ciudad de nacimiento*:',
         requerido: true,

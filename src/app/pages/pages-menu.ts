@@ -62,6 +62,10 @@ export const MENU_ITEMS: MenuItem[] = [
         title: 'Perfil',
         link: '/pages/inscripciones/info-basica',
       },
+      {
+        title: 'Discapacidades',
+        link: '/pages/inscripciones/discapacidades',
+      },
     ],
   },
   // {
