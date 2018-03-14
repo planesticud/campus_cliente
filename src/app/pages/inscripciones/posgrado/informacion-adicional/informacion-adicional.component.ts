@@ -10,11 +10,12 @@ import { UtilidadesService } from '../../../../@core/utils/utilidades.service';
 export class InformacionAdicionalComponent implements OnInit {
   formInformacionAdicional: any = {
     titulo: this.translate.instant('DATOS_BASICOS.TITULO2'),
-    clase: 'col-9',
     btn: this.translate.instant('DATOS_BASICOS.SIGUIENTE'),
+    clase: 'col-12',
     alertas: true,
     btnLimpiar: this.translate.instant('DATOS_BASICOS.SALIR'),
     modelo: 'InformacionAdicional',
+    tipo_formulario: 'basic',
     campos: [],
   };
   percentage: any;
@@ -38,6 +39,8 @@ export class InformacionAdicionalComponent implements OnInit {
     this.formInformacionAdicional.btnLimpiar = this.translate.instant('DATOS_BASICOS.SALIR');
     this.formInformacionAdicional.campos = [
       {
+        claseGrid: 'col-12',
+        clase: 'form-control',
         etiqueta: 'file',
         nombre: 'Foto',
         label: '* ' + this.translate.instant('DATOS_BASICOS.FOTO'),
@@ -47,6 +50,8 @@ export class InformacionAdicionalComponent implements OnInit {
         formatos: 'png, jpg, jpeg',
         tamanoMaximo: 2,
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'select',
         nombre: 'GrupoSanguineo',
         label: '* ' + this.translate.instant('DATOS_BASICOS.GRUPO_SANGUINEO'),
@@ -60,6 +65,8 @@ export class InformacionAdicionalComponent implements OnInit {
           { Id: 4, valor: 'O' },
         ],
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'select',
         nombre: 'RH',
         label: '* ' + this.translate.instant('DATOS_BASICOS.RH'),
@@ -71,6 +78,8 @@ export class InformacionAdicionalComponent implements OnInit {
           { Id: 2, valor: 'Negativo' },
         ],
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'select',
         nombre: 'TipoLibretaMilitar',
         label: this.translate.instant('DATOS_BASICOS.TIPO_LIBRETA_MILITAR'),
@@ -82,6 +91,8 @@ export class InformacionAdicionalComponent implements OnInit {
           { Id: 2, valor: 'Segunda clase' },
         ],
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'input',
         nombre: 'NumeroLibretaMilitar',
         label: this.translate.instant('DATOS_BASICOS.NUMERO_LIBRETA_MILITAR'),
@@ -90,6 +101,8 @@ export class InformacionAdicionalComponent implements OnInit {
         tipo: 'number',
         minimo: 0,
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'select',
         nombre: 'EstadoCivil',
         label: '* ' + this.translate.instant('DATOS_BASICOS.ESTADO_CIVIL'),
@@ -105,6 +118,8 @@ export class InformacionAdicionalComponent implements OnInit {
           { Id: 5, valor: 'Divorciado(a)' },
         ],
       }, {
+        claseGrid: 'col-6',
+        clase: 'form-control',
         etiqueta: 'select',
         nombre: 'GrupoEtnico',
         label: '* ' + this.translate.instant('DATOS_BASICOS.GRUPO_ETNICO'),

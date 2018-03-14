@@ -11,7 +11,7 @@ export class PruebaQrComponent implements OnInit {
   google = 'https://google.com.co';
   config: ExportAsConfig = {
     type: 'pdf',
-    elementId: 'mytable',
+    elementId: 'myfile',
   };
 
   constructor(private exportAsService: ExportAsService) { }
