@@ -14,6 +14,7 @@ import { FormacionAcademicaComponent } from './posgrado/formacion-academica/form
 import { InformacionContactoComponent } from './posgrado/informacion-contacto/informacion-contacto.component';
 import { InformacionAdicionalComponent } from './posgrado/informacion-adicional/informacion-adicional.component';
 import { SeleccionProgramaComponent } from './posgrado/seleccion-programa/seleccion-programa.component';
+import { DiscapacidadesComponent } from './discapacidades/discapacidades.component';
 
 const routes: Routes = [{
     path: '',
@@ -61,6 +62,10 @@ const routes: Routes = [{
         path: 'info-basica',
         component: InfoBasicaComponent,
         children: [],
+    },{
+        path: 'discapacidades',
+        component: DiscapacidadesComponent,
+        children: [],
     }],
 }];
 
@@ -81,4 +86,3 @@ export const routedComponents = [
     PosgradoComponent,
     InfoBasicaComponent,
 ];
-

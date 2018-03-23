@@ -20,6 +20,7 @@ import { FormacionAcademicaComponent } from './posgrado/formacion-academica/form
 import { InformacionContactoComponent } from './posgrado/informacion-contacto/informacion-contacto.component';
 import { InformacionAdicionalComponent } from './posgrado/informacion-adicional/informacion-adicional.component';
 import { SeleccionProgramaComponent } from './posgrado/seleccion-programa/seleccion-programa.component';
+import { DiscapacidadesComponent } from './discapacidades/discapacidades.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { SeleccionProgramaComponent } from './posgrado/seleccion-programa/selecc
     InformacionContactoComponent,
     InformacionAdicionalComponent,
     SeleccionProgramaComponent,
+    DiscapacidadesComponent,
   ],
   providers: [
     PersonaService,
