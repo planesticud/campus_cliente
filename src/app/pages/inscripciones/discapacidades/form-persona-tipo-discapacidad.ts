@@ -16,6 +16,13 @@ export let FORM_PERSONA_TIPO_DISCAPACIDAD = {
         opciones: [
             { Id: 0, valor: 'Seleccione el tipo de discapacidad ...' },
         ],
+    },
+    {
+      claseGrid: 'col-8',
+      etiqueta: 'chips',
+      nombre: 'Discapacidades',
+      label: 'Discapacidades:',
+      opciones: [],
     }
   ],
 }

@@ -21,6 +21,14 @@
               type="{{c.tipo}}" id="{{c.nombre}}" class="{{c.clase}}" placeholder="{{c.placeholder}}" [disabled]="c.deshabilitar"
             />
 
+            <!-- chips -->
+            <div *ngSwitchCase="'chips'" class="ancho">
+              <mat-chip *ngFor="let item of c.opciones" [selectable]="selectable" [removable]="true" [selected]="true" >
+                {{item.valor}}
+                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+              </mat-chip>
+            </div>
+
             <!-- textarea -->
             <textarea *ngSwitchCase="'textarea'" [(ngModel)]="c.valor" (ngModelChange)="validCampo(c)" [ngModelOptions]="{standalone: true}"
               type="text" id="{{c.nombre}}" class="{{c.clase}}" placeholder="{{c.placeholder}}">
@@ -109,6 +117,14 @@
           <input *ngSwitchCase="'input'" [(ngModel)]="c.valor" (ngModelChange)="validCampo(c)" [ngModelOptions]="{standalone: true}"
             type="{{c.tipo}}" id="{{c.nombre}}" class="{{c.clase}}" placeholder="{{c.placeholder}}" [disabled]="c.deshabilitar"
           />
+
+          <!-- chips -->
+          <div *ngSwitchCase="'chips'" class="ancho">
+            <mat-chip *ngFor="let item of c.opciones" [selectable]="selectable" [removable]="true" [selected]="true" >
+              {{item.valor}}
+              <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+            </mat-chip>
+          </div>
 
           <!-- textarea -->
           <textarea *ngSwitchCase="'textarea'" [(ngModel)]="c.valor" (ngModelChange)="validCampo(c)" [ngModelOptions]="{standalone: true}"
