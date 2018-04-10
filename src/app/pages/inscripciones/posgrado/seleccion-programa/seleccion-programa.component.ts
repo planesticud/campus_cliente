@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { UtilidadesService } from '../../../../@core/utils/utilidades.service';
+import { AcademicaService } from '../../../../@core/data/academica.service';
 
 @Component({
   selector: 'ngx-seleccion-programa',
@@ -35,6 +36,7 @@ export class SeleccionProgramaComponent implements OnInit {
     this.formPrograma.titulo = this.translate.instant('DATOS_BASICOS.TITULO4');
     this.formPrograma.btn = this.translate.instant('DATOS_BASICOS.SIGUIENTE');
     this.formPrograma.btnLimpiar = this.translate.instant('DATOS_BASICOS.SALIR');
+
     this.formPrograma.campos = [
       {
         etiqueta: 'select',
@@ -44,9 +46,6 @@ export class SeleccionProgramaComponent implements OnInit {
         valor: { Id: 0 },
         opciones: [
           { Id: 0, valor: 'Seleccione el programa ...' },
-          { Id: 1, valor: 'Ciencias - Facultad de ciencias' },
-          { Id: 2, valor: 'Educación - Facultad de educación' },
-          { Id: 3, valor: 'Ingeniería - Facultad de ingeniería' },
         ],
       },
       /**
@@ -59,8 +58,27 @@ export class SeleccionProgramaComponent implements OnInit {
       </div>
     **/
     ];
+    let carreras: any;
+    let carreras2: Array<any> = [];
+    this.academicaService.get('/academicaProxy/carreras/POSGRADO')
+      .subscribe(res => {
+        if (res !== null) {
+          carreras = res;
+          carreras2 = carreras.carrerasCollection.carrera;
+          carreras2.forEach(element => {
+            Object.defineProperty(element, 'valor',
+            Object.getOwnPropertyDescriptor(element, 'nombre'));
+            Object.defineProperty(element, 'Id',
+            Object.getOwnPropertyDescriptor(element, 'codigo'));
+          });
+
+        }
+        carreras2.unshift(this.formPrograma.campos[0].opciones[0]);
+        this.formPrograma.campos[0].opciones = carreras2;
+      });
+
   }
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private academicaService: AcademicaService) {
     this.nForms = 10;
     this.construirForm();
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {

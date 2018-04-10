@@ -8,6 +8,7 @@ import { FORMACION_LABORAL } from './formacion-laboral';
 import { DOCUMENTOS } from './documentos';
 import { DESCUENTOS } from './descuentos';
 import { UtilidadesService } from '../../../@core/utils/utilidades.service';
+import { AcademicaService } from '../../../@core/data/academica.service';
 
 @Component({
   selector: 'ngx-posgrado',
@@ -111,7 +112,7 @@ export class PosgradoComponent {
       },
     ];
   }
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private academicaService: AcademicaService) {
     this.translate = translate;
     this.construirTab();
     this.formDatosBasicos = DATOS_BASICOS;
@@ -126,6 +127,27 @@ export class PosgradoComponent {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.construirTab();
     });
+
+    // consulta de servicio WSO2
+    let carreras: any;
+    let carreras2: Array<any> = [];
+    this.academicaService.get('/academicaProxy/carreras/POSGRADO')
+      .subscribe(res => {
+        if (res !== null) {
+          carreras = res;
+          carreras2 = carreras.carrerasCollection.carrera;
+          carreras2.forEach(element => {
+            Object.defineProperty(element, 'valor',
+            Object.getOwnPropertyDescriptor(element, 'nombre'));
+            Object.defineProperty(element, 'Id',
+            Object.getOwnPropertyDescriptor(element, 'codigo'));
+          });
+
+        }
+        carreras2.unshift(this.formDatosBasicos.campos[0].opciones[0]);
+        this.formDatosBasicos.campos[0].opciones = carreras2;
+      });
+
   }
   useLanguage(language: string) {
     this.translate.use(language);

@@ -1,6 +1,7 @@
 import { AutenticationService } from './../../@core/utils/autentication.service';
 import { PersonaService } from './../../@core/data/persona.service';
 import { UbicacionesService } from './../../@core/data/ubicaciones.service';
+import { AcademicaService } from './../../@core/data/academica.service';
 import { NgModule } from '@angular/core';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -49,6 +50,7 @@ import { SeleccionProgramaComponent } from './posgrado/seleccion-programa/selecc
     AutenticationService,
     UtilidadesService,
     SharedModule,
+    AcademicaService,
   ],
 })
 export class InscripcionesModule {

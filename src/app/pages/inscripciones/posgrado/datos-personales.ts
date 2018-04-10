@@ -13,9 +13,6 @@ export let DATOS_BASICOS = {
         valor: { Id: 0 },
         opciones: [
             { Id: 0, valor: 'Seleccione el programa ...' },
-            { Id: 1, valor: 'Ciencias - Facultad de ciencias' },
-            { Id: 2, valor: 'Educación - Facultad de educación' },
-            { Id: 3, valor: 'Ingeniería - Facultad de ingeniería' },
         ],
     }, {
         claseGrid : 'col-3',
