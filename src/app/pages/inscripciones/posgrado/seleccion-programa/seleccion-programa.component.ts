@@ -59,13 +59,13 @@ export class SeleccionProgramaComponent implements OnInit {
     **/
     ];
     let carreras: any;
-    let carreras2: Array<any> = [];
+    let listado_carreras: Array<any> = [];
     this.academicaService.get('/academicaProxy/carreras/POSGRADO')
       .subscribe(res => {
         if (res !== null) {
           carreras = res;
-          carreras2 = carreras.carrerasCollection.carrera;
-          carreras2.forEach(element => {
+          listado_carreras = carreras.carrerasCollection.carrera;
+          listado_carreras.forEach(element => {
             Object.defineProperty(element, 'valor',
             Object.getOwnPropertyDescriptor(element, 'nombre'));
             Object.defineProperty(element, 'Id',
@@ -73,8 +73,8 @@ export class SeleccionProgramaComponent implements OnInit {
           });
 
         }
-        carreras2.unshift(this.formPrograma.campos[0].opciones[0]);
-        this.formPrograma.campos[0].opciones = carreras2;
+        listado_carreras.unshift(this.formPrograma.campos[0].opciones[0]);
+        this.formPrograma.campos[0].opciones = listado_carreras;
       });
 
   }
