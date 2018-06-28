@@ -20,7 +20,7 @@ export const DEFAULT_THEME = {
     },
 
     traffic: {
-      colorBlack: '#000000',
+      colorBlack: '#fff',
       tooltipBg: '#ffffff',
       tooltipBorderColor: '#c0c8d1',
       tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
