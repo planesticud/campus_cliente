@@ -9,6 +9,7 @@ export const Config = {
         DOCUMENTO_SERVICE: 'http://localhost:8094/v1/',
         ENTE_SERVICE: 'http://localhost:8096/v1/',
         CAMPUS_MID: 'http://localhost:8095/v1/',
+        ORGANIZACION: 'http://localhost.8097/v1/',
         CONF_MENU_SERVICE: 'http://10.20.0.254/configuracion_api/v1/menu_opcion_padre/ArbolMenus/',
         TOKEN: {
             AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co:8244/authorize',
@@ -42,7 +43,28 @@ export const Config = {
         },
 
     },
-    PREPROD: {
+    PREPROD_LOCAL: {
+        NUXEO: {
+            PATH: 'https://documental.udistrital.edu.co/nuxeo/',
+        },
+        WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
+        UBICACIONES_SERVICE: 'https://autenticacion.udistrital.edu.co:8244/ubicaciones_crud/v1/',
+        PERSONA_SERVICE: 'https://autenticacion.udistrital.edu.co:8244/persona_crud/v1/',
+        ENTE_SERVICE: 'https://autenticacion.udistrital.edu.co:8244/ente_crud/v1/',
+        DOCUMENTO_SERVICE: 'https://autenticacion.udistrital.edu.co:8244/documentos_crud/v1/',
+        CAMPUS_MID: 'https://autenticacion.udistrital.edu.co:8244/campus_mid/v1/',
+        CONF_MENU_SERVICE: 'https://autenticacion.udistrital.edu.co:8244/api/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
+        TOKEN: {
+            AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co:8244/authorize',
+            CLIENTE_ID: '860WlkU_AfhfieBuquBqTx4uuAYa',
+            RESPONSE_TYPE: 'id_token token',
+            REDIRECT_URL: 'https://pruebascampus.portaloas.udistrital.edu.co/',
+            SCOPE: 'openid email role documento',
+            SIGN_OUT_URL: 'https://autenticacion.udistrital.edu.co/oidc/logout',
+            SIGN_OUT_REDIRECT_URL: 'https://pruebascampus.portaloas.udistrital.edu.co/',
+        },
+    },
+    PREPROD_NUBE: {
         NUXEO: {
             PATH: 'https://documental.udistrital.edu.co/nuxeo/',
         },
@@ -66,5 +88,5 @@ export const Config = {
 };
 
 export const GENERAL = {
-    ENTORNO: Config.PREPROD,
+    ENTORNO: Config.PREPROD_LOCAL,
 };
