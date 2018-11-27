@@ -73,6 +73,7 @@
     "salir": "Exit",
     "eliminar": "Remove",
     "actualizar": "Update",
+    "cargar": "Load",
     "crear": "Create",
     "registrar": "Add",
     "guardar" : "Save",

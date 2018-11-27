@@ -11,4 +11,5 @@ export class InfoFormacionAcademica {
   TituloObtenido: string;
   TituloTrabajoGrado: string;
   DescripcionTrabajoGrado: string;
+  Documento: string;
 }

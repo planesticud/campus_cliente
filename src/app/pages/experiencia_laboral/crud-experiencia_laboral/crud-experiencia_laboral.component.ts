@@ -438,7 +438,7 @@ export class CrudExperienciaLaboralComponent implements OnInit {
           if (this.info_experiencia_laboral.Soporte.file !== undefined) {
             files.push({
               nombre: this.info_experiencia_laboral.Cargo.Nombre, key: 'Soporte',
-              file: this.info_experiencia_laboral.Soporte.file, IdDocumento: 3,
+              file: this.info_experiencia_laboral.Soporte.file, IdDocumento: 4,
             });
           }
           this.nuxeoService.getDocumentos$(files, this.documentoService)
