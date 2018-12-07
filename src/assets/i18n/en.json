@@ -207,6 +207,8 @@
     "placeholder_telefono_universidad": "E.g.: 55555555",
     "cargo": "Role",
     "placeholder_cargo": "E.g.: Teacher",
+    "descripcion_cargo": "Role description",
+    "placeholder_descripcion_cargo": "E.g.: Role description",
     "tipo_documento": "Document type",
     "placeholder_tipo_documento": "E.g.: Citizenship card (CC)",
     "numero_documento": "ID number",

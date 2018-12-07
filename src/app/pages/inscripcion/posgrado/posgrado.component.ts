@@ -56,13 +56,13 @@ export class PosgradoComponent implements OnInit {
   }
 
   setPercentage_acad(number, tab) {
-    this.percentage_tab_info[tab] = (number * 100) / 1;
-    this.percentage_info = Math.round(UtilidadesService.getSumArray(this.percentage_tab_info));
+    this.percentage_tab_acad[tab] = (number * 100) / 2;
+    this.percentage_acad = Math.round(UtilidadesService.getSumArray(this.percentage_tab_acad));
   }
 
   setPercentage_expe(number, tab) {
-    this.percentage_tab_info[tab] = (number * 100) / 1;
-    this.percentage_info = Math.round(UtilidadesService.getSumArray(this.percentage_tab_info));
+    this.percentage_tab_expe[tab] = (number * 100) / 2;
+    this.percentage_expe = Math.round(UtilidadesService.getSumArray(this.percentage_tab_expe));
   }
 
   traerInfoPersona(event, tab) {

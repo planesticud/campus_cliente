@@ -87,7 +87,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
 
   loadOptionsPais(): void {
     let paisNacimiento: Array<any> = [];
-    this.ubicacionesService.get('lugar/?query=TipoLugar.Nombre:PAIS')
+    this.ubicacionesService.get('lugar/?query=TipoLugar.Nombre:PAIS&limit=0')
       .subscribe(res => {
         if (res !== null) {
           paisNacimiento = <Array<Lugar>>res;
@@ -164,11 +164,11 @@ export class CrudFormacionAcademicaComponent implements OnInit {
   }
 
   addUbicacionOrganizacion(ubicacion: any): void {
-    /** this.campusMidService.post('persona/RegistrarUbicaciones', ubicacion).subscribe(res => {
+    this.campusMidService.post('persona/RegistrarUbicaciones', ubicacion).subscribe(res => {
       const r = res as any;
       if (res !== null && r.Type === 'error') {
         this.showToast('error', 'error',
-          'ocurrio un error agregando la ubicación');
+          'Ocurrio un error agregando la ubicación');
       }
     },
     (error: HttpErrorResponse) => {
@@ -176,13 +176,15 @@ export class CrudFormacionAcademicaComponent implements OnInit {
         type: 'error',
         title: error.status + '',
         text: this.translate.instant('ERROR.' + error.status),
+        footer: this.translate.instant('GLOBAL.crear') + '-' +
+          this.translate.instant('GLOBAL.pais_universidad'),
         confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
       });
-    }); **/
+    });
   }
 
   createOrganizacion(org: any, exp: any): void {
-    /** this.campusMidService.post('organizacion', org).subscribe(res => {
+    this.campusMidService.post('organizacion', org).subscribe(res => {
       const identificacion = <any>res;
       if (identificacion !== null && identificacion.Type !== 'error') {
         exp.Organizacion = identificacion.Body.Ente.Id;
@@ -208,9 +210,11 @@ export class CrudFormacionAcademicaComponent implements OnInit {
         type: 'error',
         title: error.status + '',
         text: this.translate.instant('ERROR.' + error.status),
+        footer: this.translate.instant('GLOBAL.crear') + '-' +
+          this.translate.instant('GLOBAL.nombre_universidad'),
         confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
       });
-    }); **/
+    });
   }
 
   searchDoc(data) {
@@ -312,12 +316,12 @@ export class CrudFormacionAcademicaComponent implements OnInit {
                   .subscribe(programa => {
                     if (programa !== null) {
                       const programa_info = <any>programa[0];
+                      temp.ProgramaAcademico = programa_info;
                       this.campusMidService.get('organizacion/identificacionente/?Ente=' + programa_info.Institucion)
                       .subscribe(organizacion => {
                         if (organizacion !== null) {
                           const organizacion_info = <any>organizacion;
                           this.searchDoc(organizacion_info.NumeroIdentificacion);
-                          temp.ProgramaAcademico = programa_info;
                           this.SoporteDocumento = temp.Documento;
                           temp.Documento = filesResponse['Documento'] + '';
                           this.info_formacion_academica = temp;
@@ -373,6 +377,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
     } else {
       this.info_formacion_academica = undefined
       this.clean = !this.clean;
+      this.SoporteDocumento = [];
       this.loading = false;
     }
   }
@@ -593,14 +598,14 @@ export class CrudFormacionAcademicaComponent implements OnInit {
       if (this.info_formacion_academica === undefined) {
         if (organizacion !== null) {
           this.createInfoFormacionAcademica(formacion);
-        /** } else {
-          this.createOrganizacion(org, formacion);**/
+        } else {
+          this.createOrganizacion(org, formacion);
         }
       } else {
         if (this.organizacion.Ente) {
           this.updateInfoFormacionAcademica(formacion);
-        /** } else {
-          this.createOrganizacion(org, formacion);**/
+        } else {
+          this.createOrganizacion(org, formacion);
         }
       }
       this.result.emit(event);

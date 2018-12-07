@@ -207,6 +207,8 @@
     "placeholder_telefono_universidad": "Ej: 55555555",
     "cargo": "Cargo",
     "placeholder_cargo": "Ej: Docente",
+    "descripcion_cargo": "Descripción del cargo",
+    "placeholder_descripcion_cargo": "Ej: Descripción del cargo",
     "tipo_documento": "Tipo de documento",
     "placeholder_tipo_documento": "Ej: Cédula de ciudadanía (CC)",
     "numero_documento": "Número de documento",

@@ -89,7 +89,7 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card [hidden]="!show_acad">
+  <nb-card [hidden]="!show_acad" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -101,10 +101,10 @@
       </div>
       <nb-tabset fullWidth (changeTab)="selectTab($event)">
         <nb-tab tabTitle="{{ 'GLOBAL.formacion_academica' | translate }}">
-          <ngx-list-formacion-academica></ngx-list-formacion-academica>
+          <ngx-list-formacion-academica (result)="setPercentage_acad($event,0)"></ngx-list-formacion-academica>
         </nb-tab>
         <nb-tab tabTitle="{{ 'GLOBAL.idiomas' | translate }}">
-          <ngx-list-idiomas></ngx-list-idiomas>
+          <ngx-list-idiomas (result)="setPercentage_acad($event,1)"></ngx-list-idiomas>
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
@@ -122,10 +122,9 @@
       </div>
       <nb-tabset fullWidth (changeTab)="selectTab($event)">
         <nb-tab tabTitle="{{ 'GLOBAL.experiencia_laboral' | translate }}">
-          <ngx-list-experiencia-laboral ente_id="{{info_ente_id}}"></ngx-list-experiencia-laboral>
+          <ngx-list-experiencia-laboral ente_id="{{info_ente_id}}" (result)="setPercentage_expe($event,0)"></ngx-list-experiencia-laboral>
         </nb-tab>
         <nb-tab tabTitle="{{ 'GLOBAL.publicaciones' | translate }}">
-          <ngx-list-idiomas></ngx-list-idiomas>
         </nb-tab>
       </nb-tabset>
     </nb-card-body>

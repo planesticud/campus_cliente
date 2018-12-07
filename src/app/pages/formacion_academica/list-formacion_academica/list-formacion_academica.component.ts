@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -22,6 +22,11 @@ export class ListFormacionAcademicaComponent implements OnInit {
   settings: any;
   source: LocalDataSource = new LocalDataSource();
 
+  @Output() eventChange = new EventEmitter();
+  @Output('result') result: EventEmitter<any> = new EventEmitter();
+
+  percentage: number;
+
   constructor(private translate: TranslateService,
     private toasterService: ToasterService,
     private userService: UserService,
@@ -33,6 +38,12 @@ export class ListFormacionAcademicaComponent implements OnInit {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.cargarCampos();
     });
+  }
+
+  getPercentage(event) {
+    this.percentage = event;
+    console.info(JSON.stringify(this.percentage));
+    this.result.emit(this.percentage);
   }
 
   cargarCampos() {
@@ -83,12 +94,6 @@ export class ListFormacionAcademicaComponent implements OnInit {
             return value.Nombre;
           },
         },
-        FechaInicio: {
-          title: this.translate.instant('GLOBAL.fecha_inicio'),
-          valuePrepareFunction: (value) => {
-            return value;
-          },
-        },
         FechaFinalizacion: {
           title: this.translate.instant('GLOBAL.fecha_fin'),
           valuePrepareFunction: (value) => {
@@ -129,6 +134,7 @@ export class ListFormacionAcademicaComponent implements OnInit {
                           const pais_info = <any>pais;
                           element.PaisUniversidad = pais_info.Nombre;
                           data_info.push(element);
+                          this.getPercentage(1);
                           this.source.load(data_info);
                         }
                       },
