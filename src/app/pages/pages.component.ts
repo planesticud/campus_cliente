@@ -34,8 +34,8 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     if (this.autenticacion.live()) {
       console.info(this.autenticacion.getPayload().role);
-      // this.rol = 'Menu%20campus';
-       this.menu = MENU_ITEMS;
+      this.rol = 'Menu%20campus';
+      this.menu = MENU_ITEMS;
     } else {
       this.rol = 'Publico';
     }
