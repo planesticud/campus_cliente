@@ -409,7 +409,6 @@ export class CrudFormacionAcademicaComponent implements OnInit {
                   const documentos_actualizados = <any>response;
                   this.info_formacion_academica.Documento = this.SoporteDocumento;
                   this.info_formacion_academica.Id = this.info_formacion_academica_id;
-                  console.info(JSON.stringify(this.info_formacion_academica));
                   this.campusMidService.put('/formacion/formacionacademica/' +
                     this.info_formacion_academica_id, this.info_formacion_academica)
                     .subscribe(res => {

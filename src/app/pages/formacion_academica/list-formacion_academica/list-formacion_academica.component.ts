@@ -42,7 +42,6 @@ export class ListFormacionAcademicaComponent implements OnInit {
 
   getPercentage(event) {
     this.percentage = event;
-    console.info(JSON.stringify(this.percentage));
     this.result.emit(this.percentage);
   }
 
