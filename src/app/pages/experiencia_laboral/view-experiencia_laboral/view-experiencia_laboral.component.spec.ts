@@ -2,21 +2,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { ViewIdiomasComponent } from './view-idiomas.component';
+import { ViewExperienciaLaboralComponent } from './view-experiencia_laboral.component';
 
-describe('ViewIdiomasComponent', () => {
-  let component: ViewIdiomasComponent;
-  let fixture: ComponentFixture<ViewIdiomasComponent>;
+describe('ViewExperienciaLaboralComponent', () => {
+  let component: ViewExperienciaLaboralComponent;
+  let fixture: ComponentFixture<ViewExperienciaLaboralComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewIdiomasComponent ],
+      declarations: [ ViewExperienciaLaboralComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewIdiomasComponent);
+    fixture = TestBed.createComponent(ViewExperienciaLaboralComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

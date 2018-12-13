@@ -127,7 +127,7 @@ export class ListFormacionAcademicaComponent implements OnInit {
                     if (organizacion !== null) {
                       const organizacion_info = <any>organizacion;
                       element.NombreUniversidad = organizacion_info.Nombre;
-                      this.ubicacionesService.get('lugar/' + organizacion_info.Ubicacion[0].UbicacionEnte.Id)
+                      this.ubicacionesService.get('lugar/' + organizacion_info.Ubicacion[0].UbicacionEnte.Lugar)
                       .subscribe(pais => {
                         if (pais !== null) {
                           const pais_info = <any>pais;
