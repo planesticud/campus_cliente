@@ -21,6 +21,7 @@ import { AdmisionesService } from './data/admisiones.service';
 import { IdiomaService } from './data/idioma.service';
 import { ProgramaAcademicoService } from './data/programa_academico.service';
 import { ProduccionAcademicaService } from './data/produccion_academica.service';
+import { DescuentosPosgradoService } from './data/descuentos_posgrado.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const socialLinks = [
@@ -106,6 +107,7 @@ export const NB_CORE_PROVIDERS = [
     UbicacionesService,
     ProgramaAcademicoService,
     ProduccionAcademicaService,
+    DescuentosPosgradoService,
     EnteService,
     {
       provide: HTTP_INTERCEPTORS,

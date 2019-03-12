@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-12 ">
-    <nb-card [hidden]="show_profile || show_info || show_acad || show_expe || show_proy || show_prod">
+    <nb-card [hidden]="show_profile || show_info || show_acad || show_expe || show_proy || show_prod || show_desc">
         <nb-card-header>
             <!-- select -->
             <mat-form-field style="width: 100%;">
@@ -12,7 +12,7 @@
                 </mat-select>
             </mat-form-field>
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                     <nb-card class="exp-card" (click)="perfil_editar('info_persona')">
                         <nb-card-header>{{ 'GLOBAL.info_basica' | translate }}</nb-card-header>
                         <nb-card-body class="icon-form">
@@ -20,9 +20,9 @@
                             <p class="percentage">{{percentage_info}} %</p>
                         </nb-card-body>
                     </nb-card>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                     <nb-card class="exp-card" *ngIf="info_ente_id" (click)="perfil_editar('formacion_academica')">
                         <nb-card-header>{{ 'GLOBAL.formacion_academica' | translate }}</nb-card-header>
                         <nb-card-body class="icon-form">
@@ -30,19 +30,19 @@
                             <p class="percentage">{{percentage_acad}} %</p>
                         </nb-card-body>
                     </nb-card>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                   <nb-card class="exp-card" *ngIf="info_ente_id" (click)="perfil_editar('produccion_academica')">
                     <nb-card-header>{{ 'GLOBAL.produccion_academica' | translate }}</nb-card-header>
                     <nb-card-body class="icon-form">
                       <i class="fa fa-book fa-5x"></i>
                       <!-- <p class="percentage">{{percentage_prod}} %</p> -->
-                    </nb-card-body>
+    <!--                </nb-card-body>
                   </nb-card>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                     <nb-card class="exp-card" *ngIf="info_ente_id" (click)="perfil_editar('propuesta_grado')">
                         <nb-card-header>{{ 'GLOBAL.propuesta_grado' | translate }}</nb-card-header>
                         <nb-card-body class="icon-form">
@@ -50,9 +50,18 @@
                             <p class="percentage">{{percentage_proy}} %</p>
                         </nb-card-body>
                     </nb-card>
-                </div>
+                </div> -->
 
                 <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                    <nb-card class="exp-card" *ngIf="info_ente_id" (click)="perfil_editar('matricula_descuentos')">
+                        <nb-card-header>{{ 'GLOBAL.matricula_descuentos' | translate }}</nb-card-header>
+                        <nb-card-body class="icon-form">
+                            <i class="fa fa-dollar fa-5x"></i>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                     <nb-card class="exp-card" *ngIf="info_ente_id" (click)="perfil_editar('experiencia_laboral')">
                         <nb-card-header>{{ 'GLOBAL.experiencia_laboral' | translate }}</nb-card-header>
                         <nb-card-body class="icon-form">
@@ -60,16 +69,16 @@
                             <p class="percentage">{{percentage_expe}} %</p>
                         </nb-card-body>
                     </nb-card>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6 col-md-4 col-lg-3" align="center">
+                <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center">
                     <nb-card class=" exp-card" *ngIf="info_ente_id" (click)="perfil_editar('perfil')">
                         <nb-card-header>{{ 'GLOBAL.perfil' | translate }}</nb-card-header>
                         <nb-card-body class="icon-form">
                             <i class="fa fa-user fa-5x"></i>
                         </nb-card-body>
                     </nb-card>
-                </div>
+                </div> -->
             </div>
         </nb-card-header>
 
@@ -83,7 +92,7 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card [hidden]="!show_info">
+    <!-- <nb-card [hidden]="!show_info">
         <nb-card-body>
             <div class="row">
                 <div class="col-md-11">
@@ -103,9 +112,9 @@
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 
-    <nb-card [hidden]="!show_acad">
+    <!-- <nb-card [hidden]="!show_acad">
         <nb-card-body>
             <div class="row">
                 <div class="col-md-11">
@@ -124,15 +133,15 @@
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 
-    <nb-card [hidden]="!show_prod">
+    <!-- <nb-card [hidden]="!show_prod">
         <nb-card-body>
             <div class="row">
                 <!-- <div class="col-md-11">
                     <ngb-progressbar showValue="true" type="success" [value]="percentage_prod" [animated]="true" [height]="'15px'"></ngb-progressbar>
                 </div> -->
-                <div class="col-md-1" align="right">
+    <!--            <div class="col-md-1" align="right">
                     <button class="btn btn-danger btn-icon input-group-text btn-tn" (click)="show_profile=false; show_info=false; show_acad=false; show_expe=false; show_proy=false; show_prod=false">X</button>
                 </div>
             </div>
@@ -160,9 +169,9 @@
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 
-    <nb-card [hidden]="!show_proy">
+    <!-- <nb-card [hidden]="!show_proy">
         <nb-card-body>
             <div class="row">
                 <div class="col-md-11">
@@ -178,9 +187,39 @@
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
+    </nb-card> -->
+
+    <!-- <nb-card [hidden]="!show_desc">
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-1" align="right">
+                    <button class="btn btn-danger btn-icon input-group-text btn-tn" (click)="show_profile=false; show_info=false; show_acad=false; show_expe=false; show_proy=false; show_prod=false; show_desc=false">X</button>
+                </div>
+            </div>
+            <nb-tabset fullWidth (changeTab)="selectTab($event)">
+                <nb-tab tabTitle="{{ 'GLOBAL.matricula_descuentos' | translate }}">
+                    <ngx-crud-descuento-matricula></ngx-crud-descuento-matricula>
+                </nb-tab>
+            </nb-tabset>
+        </nb-card-body>
+    </nb-card> -->
+
+    <nb-card [hidden]="!show_desc">
+        <nb-card-body>
+            <div class="row">
+               <div class="col-md-1" align="right">
+                    <button class="btn btn-danger btn-icon input-group-text btn-tn" (click)="show_profile=false; show_info=false; show_acad=false; show_expe=false; show_proy=false; show_prod=false; show_desc=false ">X</button>
+                </div>
+            </div>
+            <nb-tabset fullWidth (changeTab)="selectTab($event)">
+                <nb-tab tabTitle="{{ 'GLOBAL.matricula_descuentos' | translate }}">
+                  <ngx-list-descuento-matricula></ngx-list-descuento-matricula>
+                </nb-tab>
+            </nb-tabset>
+        </nb-card-body>
     </nb-card>
 
-    <nb-card [hidden]="!show_expe" *ngIf="info_ente_id">
+    <!-- <nb-card [hidden]="!show_expe" *ngIf="info_ente_id">
         <nb-card-body>
             <div class="row">
                 <div class="col-md-11">
@@ -199,9 +238,9 @@
                 </nb-tab>
             </nb-tabset>
         </nb-card-body>
-    </nb-card>
+    </nb-card> -->
 
-    <div [hidden]="!show_profile" *ngIf="info_ente_id && show_profile">
+    <!-- <div [hidden]="!show_profile" *ngIf="info_ente_id && show_profile">
         <ngx-perfil (url_editar)="perfil_editar($event)" info_persona_id="{{info_ente_id}}"></ngx-perfil>
-    </div>
+    </div> -->
 </div>

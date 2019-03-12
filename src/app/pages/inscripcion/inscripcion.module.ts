@@ -27,6 +27,7 @@ import { ListExperienciaLaboralComponent } from '../experiencia_laboral/list-exp
 import { CrudExperienciaLaboralComponent } from '../experiencia_laboral/crud-experiencia_laboral/crud-experiencia_laboral.component';
 import { ProgramaAcademicoService } from '../../@core/data/programa_academico.service';
 import { ProduccionAcademicaService } from '../../@core/data/produccion_academica.service';
+import { DescuentosPosgradoService } from '../../@core/data/descuentos_posgrado.service';
 import { PropuestaGradoModule } from '../propuesta_grado/propuesta_grado.module';
 import { CrudPropuestaGradoComponent } from '../propuesta_grado/crud-propuesta_grado/crud-propuesta_grado.component';
 import { LibroModule } from '../libro/libro.module';
@@ -51,6 +52,10 @@ import { ProduccionArtesArquDisenoModule } from '../produccion_artes_arqu_diseno
 // tslint:disable-next-line:max-line-length
 import { ListProduccionArtesArquDisenoComponent } from '../produccion_artes_arqu_diseno/list-produccion_artes_arqu_diseno/list-produccion_artes_arqu_diseno.component';
 import { CrudProduccionArtesArquDisenoComponent } from '../produccion_artes_arqu_diseno/crud-produccion_artes_arqu_diseno/crud-produccion_artes_arqu_diseno.component';
+import { DescuentoMatriculaModule } from '../descuento_matricula/descuento_matricula.module';
+import { ListDescuentoMatriculaComponent } from '../descuento_matricula/list-descuento_matricula/list-descuento_matricula.component';
+import { CrudDescuentoMatriculaComponent } from '../descuento_matricula/crud-descuento_matricula/crud-descuento_matricula.component';
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -72,6 +77,7 @@ import { CrudProduccionArtesArquDisenoComponent } from '../produccion_artes_arqu
     OtraPublicacionModule,
     ProduccionTecnicaModule,
     ProduccionArtesArquDisenoModule,
+    DescuentoMatriculaModule,
   ],
   declarations: [
     ...routedComponents,
@@ -85,6 +91,7 @@ import { CrudProduccionArtesArquDisenoComponent } from '../produccion_artes_arqu
     UtilidadesService,
     ProgramaAcademicoService,
     ProduccionAcademicaService,
+    DescuentosPosgradoService,
   ],
   entryComponents: [
     ListIdiomasComponent,
@@ -109,6 +116,8 @@ import { CrudProduccionArtesArquDisenoComponent } from '../produccion_artes_arqu
     ListProduccionTecnicaComponent,
     CrudProduccionArtesArquDisenoComponent,
     ListProduccionArtesArquDisenoComponent,
+    CrudDescuentoMatriculaComponent,
+    ListDescuentoMatriculaComponent,
   ],
 })
 export class InscripcionModule { }

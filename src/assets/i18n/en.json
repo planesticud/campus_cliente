@@ -467,6 +467,19 @@
         "inscrito": "He's been enrolled in the academic period:",
         "periodo_academico": "Academic Period",
         "filtrar": "Filter",
-        "Limpiar": "Clean"
+        "Limpiar": "Clean",
+        "matricula_descuentos": "Solicitud descuentos Posgrado",
+        "descuento_matricula": "descuento_matricula",
+        "placeholder_descuento_matricula": "ej: descuento_matricula",
+        "enlace": "enlace",
+        "placeholder_enlace": "ej: enlace",
+        "descuento": "descuento",
+        "placeholder_descuento": "ej: descuento",
+        "matricula": "matricula",
+        "placeholder_matricula": "ej: matricula",
+        "tipodescuentomatricula": "tipodescuentomatricula",
+        "placeholder_tipodescuentomatricula": "ej: tipodescuentomatricula",
+        "tipo_descuento_matricula": "tipo_descuento_matricula",
+        "placeholder_tipo_descuento_matricula": "ej: tipo_descuento_matricula"
     }
 }

@@ -43,6 +43,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   show_expe = false;
   show_proy = false;
   show_prod = false;
+  show_desc = false;
   info_contacto: boolean;
   info_persona: boolean;
   info_caracteristica: boolean;
@@ -177,6 +178,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.info_persona = false;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       case 'info_caracteristica':
         this.show_info = true;
@@ -188,6 +190,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.info_persona = false;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       case 'info_persona':
         this.show_info = true;
@@ -199,6 +202,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.info_persona = true;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       case 'experiencia_laboral':
         this.show_info = false;
@@ -207,6 +211,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = true;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       case 'formacion_academica':
         this.show_info = false;
@@ -215,6 +220,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = false;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       case 'produccion_academica':
         this.show_info = false;
@@ -223,9 +229,10 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = false;
         this.info_contacto = false;
         this.info_caracteristica = false;
-        this.info_persona = true;
+        this.info_persona = false;
         this.show_proy = false;
         this.show_prod = true;
+        this.show_desc = false;
         break;
       case 'propuesta_grado':
         this.show_info = false;
@@ -234,6 +241,19 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = false;
         this.show_proy = true;
         this.show_prod = false;
+        this.show_desc = false;
+        break;
+      case 'matricula_descuentos':
+        this.show_info = false;
+        this.show_profile = false;
+        this.show_acad = false;
+        this.show_expe = false;
+        this.info_contacto = false;
+        this.info_caracteristica = false;
+        this.info_persona = false;
+        this.show_proy = false;
+        this.show_prod = false;
+        this.show_desc = true;
         break;
       case 'perfil':
         this.show_info = false;
@@ -242,6 +262,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = false;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
       default:
         this.show_info = false;
@@ -250,6 +271,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.show_expe = false;
         this.show_proy = false;
         this.show_prod = false;
+        this.show_desc = false;
         break;
     }
   }
