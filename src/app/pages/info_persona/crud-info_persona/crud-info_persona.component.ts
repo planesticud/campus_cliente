@@ -132,6 +132,7 @@ export class CrudInfoPersonaComponent implements OnInit {
             if (temp.SoporteDocumento + '' !== '0') {
               files.push({ Id: temp.SoporteDocumento, key: 'SoporteDocumento' });
             }
+            console.info('DAto Load:' + JSON.stringify(files) )
             this.nuxeoService.getDocumentoById$(files, this.documentoService)
               .subscribe(response => {
                 const filesResponse = <any>response;
@@ -190,6 +191,7 @@ export class CrudInfoPersonaComponent implements OnInit {
           if (this.info_info_persona.Foto.file !== undefined) {
             files.push({ file: this.info_info_persona.Foto.file, documento: this.Foto, key: 'Foto' });
           }
+          console.info('DAto Update:' + JSON.stringify(files) )
           if (this.info_info_persona.SoporteDocumento.file !== undefined) {
             files.push({ file: this.info_info_persona.SoporteDocumento.file, documento: this.SoporteDocumento, key: 'SoporteDocumento' });
           }

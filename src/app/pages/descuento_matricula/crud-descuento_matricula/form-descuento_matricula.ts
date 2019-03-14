@@ -53,7 +53,7 @@ export let FORM_DESCUENTO_MATRICULA = {
     // },
     {
         etiqueta: 'select',
-        claseGrid: 'col-11',
+        claseGrid: 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
         nombre: 'TipoDescuentoMatricula',
         label_i18n: 'tipodescuentomatricula',
         placeholder_i18n: 'tipodescuentomatricula',
@@ -64,9 +64,9 @@ export let FORM_DESCUENTO_MATRICULA = {
     },
     {
         etiqueta: 'file',
-        claseGrid: 'col-lg-11 col-md-11 col-sm-11 col-xs-11',
+        claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
         clase: 'form-control',
-        nombre: 'DocumentoSoporte',
+        nombre: 'Soporte',
         label_i18n: 'enlace',
         placeholder_i18n: 'enlace',
         requerido: false,

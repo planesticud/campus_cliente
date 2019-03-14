@@ -467,17 +467,19 @@
         "filtrar": "Filtrar",
         "Limpiar": "Limpiar",
         "matricula_descuentos": "Solicitud descuentos Posgrado",
-        "descuento_matricula": "descuento_matricula",
+        "descuento_matricula": "Solicitud descuento matrícula",
         "placeholder_descuento_matricula": "ej: descuento_matricula",
-        "enlace": "enlace",
+        "enlace": "Anexar soporte",
         "placeholder_enlace": "ej: enlace",
         "descuento": "descuento",
         "placeholder_descuento": "ej: descuento",
         "matricula": "matricula",
         "placeholder_matricula": "ej: matricula",
-        "tipodescuentomatricula": "tipodescuentomatricula",
-        "placeholder_tipodescuentomatricula": "ej: tipodescuentomatricula",
+        "tipodescuentomatricula": "Tipo de descuento",
+        "placeholder_tipodescuentomatricula": "ej: Egresado",
         "tipo_descuento_matricula": "tipo_descuento_matricula",
-        "placeholder_tipo_descuento_matricula": "ej: tipo_descuento_matricula"
+        "placeholder_tipo_descuento_matricula": "ej: tipo_descuento_matricula",
+        "create_descuento": "Solicitar descuento?",
+        "descuentoMatricula": "Descuento "
     }
 }

@@ -4,6 +4,7 @@ import { DescuentosPosgradoService } from '../../../@core/data/descuentos_posgra
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { UserService } from '../../../@core/data/users.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import 'style-loader!angular2-toaster/toaster.css';
 
@@ -17,7 +18,6 @@ export class ListDescuentoMatriculaComponent implements OnInit {
   cambiotab: boolean = false;
   config: ToasterConfig;
   settings: any;
-
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private translate: TranslateService,
@@ -49,41 +49,6 @@ export class ListDescuentoMatriculaComponent implements OnInit {
       },
       mode: 'external',
       columns: {
-        // Id: {
-        //   title: this.translate.instant('GLOBAL.id'),
-        //   // type: 'number;',
-        //   valuePrepareFunction: (value) => {
-        //     return value;
-        //   },
-        // },
-        // Metadatos: {
-        //   title: this.translate.instant('GLOBAL.metadatos'),
-        //   // type: 'string;',
-        //   valuePrepareFunction: (value) => {
-        //     return value;
-        //   },
-        // },
-        // Enlace: {
-        //   title: this.translate.instant('GLOBAL.enlace'),
-        //   // type: 'string;',
-        //   valuePrepareFunction: (value) => {
-        //     return value;
-        //   },
-        // },
-        // Descuento: {
-        //   title: this.translate.instant('GLOBAL.descuento'),
-        //   // type: 'number;',
-        //   valuePrepareFunction: (value) => {
-        //     return value;
-        //   },
-        // },
-        // Matricula: {
-        //   title: this.translate.instant('GLOBAL.matricula'),
-        //   // type: 'number;',
-        //   valuePrepareFunction: (value) => {
-        //     return value;
-        //   },
-        // },
         TipoDescuentoMatricula: {
           title: this.translate.instant('GLOBAL.tipodescuentomatricula'),
           // type: 'tipo_descuento_matricula;',
@@ -100,49 +65,66 @@ export class ListDescuentoMatriculaComponent implements OnInit {
   }
 
   loadData(): void {
-    this.descuentosPosgradoService.get('descuento_matricula/?query=ente:' + this.userService.getEnte()).subscribe(res => {
+    this.descuentosPosgradoService.get('descuento_matricula/?query=ente:' + this.userService.getEnte())
+    .subscribe(res => {
       if (res !== null) {
         const data = <Array<any>>res;
         this.source.load(data);
           }
-    });
-  }
+    },
+    (error: HttpErrorResponse) => {
+      Swal({
+        type: 'error',
+        title: error.status + '',
+        text: this.translate.instant('ERROR.' + error.status),
+        confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+      });
+  });
+}
 
   ngOnInit() {
   }
 
   onEdit(event): void {
     this.uid = event.data.Id;
-    // this.activetab();
   }
 
   onCreate(event): void {
     this.uid = 0;
-    // this.activetab();
   }
 
   onDelete(event): void {
     const opt: any = {
-      title: 'Deleting?',
-      text: 'Delete DescuentoMatricula!',
+      title: this.translate.instant('GLOBAL.eliminar'),
+      text: this.translate.instant('GLOBAL.eliminar') + '?',
       icon: 'warning',
       buttons: true,
       dangerMode: true,
-      showCancelButton: true,
+      confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+      cancelButtonText: this.translate.instant('GLOBAL.cancelar'),
     };
     Swal(opt)
     .then((willDelete) => {
-
       if (willDelete.value) {
         this.descuentosPosgradoService.delete('descuento_matricula/', event.data).subscribe(res => {
           if (res !== null) {
             this.loadData();
-            this.showToast('info', 'deleted', 'DescuentoMatricula deleted');
+            this.showToast('info', this.translate.instant('GLOBAL.eliminar'),
+            this.translate.instant('GLOBAL.idioma') + ' ' +
+            this.translate.instant('GLOBAL.confirmarEliminar'));
             }
+         },
+         (error: HttpErrorResponse) => {
+           Swal({
+             type: 'error',
+             title: error.status + '',
+             text: this.translate.instant('ERROR.' + error.status),
+             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+           });
          });
-      }
-    });
-  }
+       }
+     });
+   }
 
   activetab(): void {
     this.cambiotab = !this.cambiotab;
@@ -159,13 +141,11 @@ export class ListDescuentoMatriculaComponent implements OnInit {
   onChange(event) {
     if (event) {
       this.loadData();
-      this.cambiotab = !this.cambiotab;
     }
   }
 
 
   itemselec(event): void {
-    // console.log("afssaf");
   }
 
   private showToast(type: string, title: string, body: string) {
@@ -188,5 +168,4 @@ export class ListDescuentoMatriculaComponent implements OnInit {
     };
     this.toasterService.popAsync(toast);
   }
-
 }

@@ -8,4 +8,5 @@ export class DescuentoMatricula {
   Ente: number;
   DocumentoSoporte: String;
   Tipodescuentomatricula: TipoDescuentoMatricula;
+  Autorizado: boolean;
 }

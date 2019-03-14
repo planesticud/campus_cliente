@@ -480,6 +480,8 @@
         "tipodescuentomatricula": "tipodescuentomatricula",
         "placeholder_tipodescuentomatricula": "ej: tipodescuentomatricula",
         "tipo_descuento_matricula": "tipo_descuento_matricula",
-        "placeholder_tipo_descuento_matricula": "ej: tipo_descuento_matricula"
+        "placeholder_tipo_descuento_matricula": "ej: tipo_descuento_matricula",
+        "create_descuento": "Solicitar descuento?",
+        "descuentoMatricula": "Descuento "
     }
 }
