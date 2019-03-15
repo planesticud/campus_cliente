@@ -82,11 +82,9 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
       let tipodescuentomatricula: Array<any> = [];
       this.descuentosPosgradoService.get('tipo_descuento_matricula/?limit=0')
         .subscribe(res => {
-          console.info ('ENTRO');
           if (res !== null) {
             tipodescuentomatricula = <Array<TipoDescuentoMatricula>>res;
           }
-          console.info ('Datos: ' + tipodescuentomatricula)
           this.formDescuentoMatricula.campos[ this.getIndexForm('TipoDescuentoMatricula') ].opciones = tipodescuentomatricula;
         },
         (error: HttpErrorResponse) => {
@@ -108,35 +106,17 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
           if (res !== null) {
             const temp = <DescuentoMatricula>res[0];
             const files = []
-            console.info ('KOKOK')
-            console.info ('Contenido Res: ' + JSON.stringify(temp));
             if (temp.DocumentoSoporte + '' !== '0') {
-              console.info ('Diferente')
               files.push({ Id: temp.Enlace, key: 'DocumentoSoporte'});
-              console.info ('files inicial: ' + JSON.stringify(files));
             }
             this.nuxeoService.getDocumentoById$(files, this.documentoService)
               .subscribe(response => {
                 const filesResponse = <any>response;
-                // if ( (Object.keys(filesResponse_2).length !== 0) && (filesResponse_2['DocumentoSoporte'] !== undefined) ) {
+                // if ( (Object.keys(filesResponse).length !== 0) && (filesResponse['DocumentoSoporte'] !== undefined) ) {
                if (Object.keys(filesResponse).length === files.length) {
-                  console.info('FileResponse: ' +  JSON.stringify(filesResponse))
-                  // temp.DocumentoSoporte = filesResponse['DocumentoSoporte']
-                  this.info_descuento_matricula = temp;
+                  this.info_descuento_matricula =  <any>res// temp;
                   this.DocumentoSoporte = this.info_descuento_matricula.Soporte;
                   this.info_descuento_matricula.Soporte = filesResponse['DocumentoSoporte'] + '';
-                  this.DocumentoSoporte = this.info_descuento_matricula.Soporte;
-                  // this.info_descuento_matricula.DocumentoSoporte = filesResponse['DocumentoSoporte']
-                  // this.DocumentoSoporte = this.info_descuento_matricula.DocumentoSoporte;
-                  console.info('this.DocumentoSoporte ' + this.DocumentoSoporte)
-                  console.info('this.DocumentoSoporte ' + this.DocumentoSoporte)
-                  // this.info_descuento_matricula.Tipodescuentomatricula = temp.Tipodescuentomatricula;
-                  // this.info_descuento_matricula.DocumentoSoporte = filesResponse['DocumentoSoporte'] + '';
-                  // this.DocumentoSoporte = this.info_descuento_matricula.DocumentoSoporte;
-                  // this.loading = false;
-                  console.info('OKOK#2')
-                  console.info ('Que es 2: ' + JSON.stringify(this.info_descuento_matricula));
-                  // this.loading = false
                 }
               },
              (error: HttpErrorResponse) => {
@@ -179,22 +159,15 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
       if (willDelete.value) {
         this.info_descuento_matricula = <any>descuentoMatricula;
         const files = [];
-        console.info ('Y enton ... '  + JSON.stringify(this.info_descuento_matricula.Soporte))
         if (this.info_descuento_matricula.Soporte.file !== undefined) {
-          console.info ('Borrar_1: ENTRO' + JSON.stringify(this.info_descuento_matricula.Soporte) + ' y ' + this.DocumentoSoporte)
-          console.info ('Que es 4: ' + JSON.stringify(this.info_descuento_matricula));
-          console.info ('Cual File: ' + JSON.stringify(this.info_descuento_matricula.Soporte));
           files.push({ file: this.info_descuento_matricula.Soporte.file, documento: this.DocumentoSoporte, key: 'DocumentoSoporte' });
           console.info ('FILES: ' + JSON.stringify(files) + 'Longitud:' + files.length);
         }
         if (files.length !== 0) {
           this.nuxeoService.updateDocument$(files, this.documentoService)
             .subscribe(response => {
-              console.info('Que hijo  de LA GRAN PUTA MADRE')
               if (Object.keys(response).length === files.length) {
-                console.info('AcaTodoBIen')
                 const documentos_actualizados = <any>response;
-                // this.info_descuento_matricula.DocumentoSoporte = this.DocumentoSoporte;
                 this.descuentosPosgradoService.put('descuento_matricula', this.info_descuento_matricula)
                 .subscribe(res => {
                   if (documentos_actualizados['DocumentoSoporte'] !== undefined) {
@@ -205,7 +178,6 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
                   this.showToast('info', this.translate.instant('GLOBAL.actualizar'),
                   this.translate.instant('GLOBAL.descuento_matricula') + ' ' +
                   this.translate.instant('GLOBAL.confirmarActualizar'));
-                  console.info ('Que es 3: ' + JSON.stringify(this.info_descuento_matricula));
                 },
                 (error: HttpErrorResponse) => {
                   Swal({
@@ -216,7 +188,6 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
                   });
                 });
               } else {
-                console.info ('Que paso mijito')
               }
             },
             (error: HttpErrorResponse) => {
@@ -256,27 +227,15 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
          this.descuentosPosgradoService.get('descuento_matricula/?query=ente:' + this.user.getEnte())
            .subscribe(res => {
             if (res !== null) {
-              // let count = Object.keys(res).length;
-              console.info ('Cantidad Registros: ' + Object.keys(res).length);
-              console.info ('DATA: ' + res.toString )
-              // var obj = JSON.parse(res)
               if (Object.keys(res).length >= 2) {
-                console.info ('No se pueden solicitar más descuentos');
                 Swal('Descuento no válido', 'No se pueden solicitar más descuentos', 'error');
               } else if (Object.keys(res).length === 1) {
-                console.info ('Que es res ' + JSON.stringify(res[0]));
-                // const temp = <DescuentoMatricula>res[0];
                 const temp = res[0];
-                console.info ('A' + res[0].TipoDescuentoMatricula.Id);
-                console.info ('B' + temp.TipoDescuentoMatricula.Id);
                 if (tipoDescuento === 1 && temp.TipoDescuentoMatricula.Id !== 1) {
-                  console.info ('Agregando registro...');
                   this.createDescuentoMatricula(descuentoMatricula);
                 } else if (tipoDescuento !== 1 && temp.TipoDescuentoMatricula.Id === 1) {
-                  console.info ('Agregando registro...');
                   this.createDescuentoMatricula(descuentoMatricula);
                 } else {
-                  console.info ('Descuentos incompatibles');
                   Swal('Descuento no válido', 'Incompatible con descuento solicitado anteriormente', 'error');
                   this.eventChange.emit(true);
                   this.clean = !this.clean;
@@ -312,25 +271,21 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
              nombre: this.autenticationService.getPayload().sub, key: 'DocumentoSoporte',
              file: this.info_descuento_matricula.Soporte.file, IdDocumento: 2})
         }
-
         this.nuxeoService.getDocumentos$(files, this.documentoService)
           .subscribe(response => {
             if (Object.keys(response).length === files.length) {
               const filesUp = <any>response;
               if (filesUp['DocumentoSoporte'] !== undefined) {
-                  this.info_descuento_matricula.Soporte = filesUp['DocumentoSoporte'].Id;
                   this.info_descuento_matricula.Enlace = filesUp['DocumentoSoporte'].Id;
               }
               this.descuentosPosgradoService.post('descuento_matricula', this.info_descuento_matricula)
                 .subscribe(res => {
                   const r = <any>res
                   if (r !== null && r.Type !== 'error') {
-                    // this.info_descuento_matricula = <DescuentoMatricula>res;
                     this.eventChange.emit(true);
                     this.showToast('info', this.translate.instant('GLOBAL.crear'),
                       this.translate.instant('GLOBAL.descuentoMatricula') + ' ' +
                       this.translate.instant('GLOBAL.confirmarCrear'));
-                    // this.loadDescuentoMatricula();
                     this.clean = !this.clean;
                   } else {
                     this.showToast('error', this.translate.instant('GLOBAL.error'),
@@ -357,6 +312,7 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
         })
       }
     });
+    this.loadDescuentoMatricula();
   }
 
   ngOnInit() {
@@ -367,7 +323,6 @@ export class CrudDescuentoMatriculaComponent implements OnInit {
     if (event.valid) {
       if (this.info_descuento_matricula === undefined) {
         this.crearNuevoDescuentoMatricula(event.data.DescuentoMatricula)
-        // this.createDescuentoMatricula(event.data.DescuentoMatricula);
         this.loadDescuentoMatricula();
       } else {
         this.updateDescuentoMatricula(event.data.DescuentoMatricula);
