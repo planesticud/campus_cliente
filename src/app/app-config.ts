@@ -25,7 +25,7 @@ export const Config = {
     UBICACIONES_SERVICE: 'http://localhost:8085/v1/',
     CONFIGURACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/api/configuracion_crud_api/v1/',
     CONF_MENU_SERVICE: 'http://10.20.0.254/configuracion_api/v1/menu_opcion_padre/ArbolMenus/',
-    NOTIFICACION_SERVICE: 'ws://pruebasapi.intranetoas.udistrital.edu.co:8116/ws/join',
+    NOTIFICACION_SERVICE: 'ws://autenticacion.portaloas.udistrital.edu.co/apioas/v1/join',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co/oauth2/authorize',
@@ -71,7 +71,7 @@ export const Config = {
     UBICACIONES_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/ubicacion/v1/',
     CONFIGURACION_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/configuracion_crud_api/v1/',
     CONF_MENU_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
-    NOTIFICACION_SERVICE: 'ws://autenticacion.udistrital.edu.co/apioas/notificacionws/v1/',
+    NOTIFICACION_SERVICE: 'ws://autenticacion.portaloas.udistrital.edu.co/apioas/v1/join',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co/oauth2/authorize',
@@ -102,7 +102,7 @@ export const Config = {
     CORE_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/core_crud/',
     SESIONES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/sesiones_crud/',
     CONFIGURACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/api/configuracion_crud_api/v1/',
-    NOTIFICACION_SERVICE: 'ws://autenticacion.portaloas.udistrital.edu.co/apioas/notificacionws/ws/join',
+    NOTIFICACION_SERVICE: 'ws://autenticacion.portaloas.udistrital.edu.co/apioas/v1/join',
     CONF_MENU_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/api/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
