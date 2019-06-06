@@ -7,7 +7,6 @@ import { ImplicitAutenticationService } from '../../../@core/utils/implicit_aute
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { NotificacionesService } from '../../../@core/utils/notificaciones.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-header',
@@ -28,8 +27,8 @@ export class HeaderComponent implements OnInit {
     private menuService: NbMenuService,
     private analyticsService: AnalyticsService,
     private autenticacion: ImplicitAutenticationService,
-    private notificacionService: NotificacionesService,
     private router: Router,
+    private notificacionService: NotificacionesService,
     public translate: TranslateService) {
     this.translate = translate;
     this.itemClick = this.menuService.onItemClick()
@@ -37,21 +36,18 @@ export class HeaderComponent implements OnInit {
         this.onContecxtItemSelection(event.item.title);
       });
 
-
-    this.notificacionService.getMessages()
-      .pipe(debounceTime(700), distinctUntilChanged())
+    NotificacionesService.noNotify$
+      .subscribe((numero: any) => {
+        if (typeof numero !== typeof {}) {
+          this.noNotify = numero + '';
+        }
+      });
+    NotificacionesService.arrayMessages$
       .subscribe((notification: any) => {
         const temp = notification.map((notify: any) => {
           return { title: notify.Content.Message, icon: 'fa fa-commenting-o' }
         });
         this.userMenu = [...temp.slice(0, 7), ...[{ title: 'ver todas', icon: 'fa fa-list' }]];
-      });
-
-    this.notificacionService.noNotify$
-      .subscribe((numero: any) => {
-        if (typeof numero !== typeof {}) {
-          this.noNotify = numero + '';
-        }
       });
   }
 

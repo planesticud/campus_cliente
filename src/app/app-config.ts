@@ -23,9 +23,9 @@ export const Config = {
     PROGRAMA_ACADEMICO_SERVICE: 'http://localhost:8101/v1/',
     SESIONES_SERVICE: 'http://localhost:8081/v1',
     UBICACIONES_SERVICE: 'http://localhost:8085/v1/',
-    CONFIGURACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/api/configuracion_crud_api/v1/',
+    CONFIGURACION_SERVICE: 'http://pruebasapi.intranetoas.udistrital.edu.co:8086/v1/',
     CONF_MENU_SERVICE: 'http://10.20.0.254/configuracion_api/v1/menu_opcion_padre/ArbolMenus/',
-    NOTIFICACION_SERVICE: 'ws://autenticacion.portaloas.udistrital.edu.co/apioas/v1/join',
+    NOTIFICACION_SERVICE: 'ws://pruebasapi.intranetoas.udistrital.edu.co:8116/ws/join',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co/oauth2/authorize',
