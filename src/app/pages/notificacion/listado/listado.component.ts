@@ -17,9 +17,10 @@ export class ListadoComponent {
   searchTerm$ = new Subject<string>();
 
   notificaciones: any;
-  constructor() {
+  constructor(private notificacionService: NotificacionesService,
+    ) {
     this.notificaciones = [];
-    NotificacionesService.arrayMessages$
+    this.notificacionService.arrayMessages$
       .subscribe((notification: any) => {
         this.notificaciones = notification;
       });
@@ -36,7 +37,7 @@ export class ListadoComponent {
 
   searchEntries(term) {
     const array = []
-    array.push(NotificacionesService.listMessage.filter(notify => notify.Content.Message.indexOf(term) !== -1));
+    array.push(this.notificacionService.listMessage.filter(notify => notify.Content.Message.indexOf(term) !== -1));
     return array
   }
 

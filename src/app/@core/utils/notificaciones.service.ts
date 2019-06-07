@@ -1,62 +1,71 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
-import { WebsocketService } from './websocket.service';
 import { GENERAL } from './../../app-config';
 import { ImplicitAutenticationService } from './implicit_autentication.service';
 import { ConfiguracionService } from './../data/configuracion.service';
 import { from } from 'rxjs';
-import { webSocket } from "rxjs/webSocket";
+import { webSocket } from 'rxjs/webSocket';
 import { map } from 'rxjs-compat/operators/map';
 
 const CHAT_URL = GENERAL.ENTORNO.NOTIFICACION_SERVICE;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class NotificacionesService {
-    static messagesSubject: Subject<any>;
+    public messagesSubject: Subject<any>;
 
-    static listMessage: any;
-    payload: any;
+    public listMessage: any;
+    public payload: any;
+    private conected = false;
 
-    static noNotifySubject = new Subject();
-    static noNotify$ = NotificacionesService.noNotifySubject.asObservable();
+    private noNotifySubject = new Subject();
+    public noNotify$ = this.noNotifySubject.asObservable();
 
-    static arrayMessagesSubject = new Subject();
-    static arrayMessages$ = NotificacionesService.arrayMessagesSubject.asObservable();
+    private arrayMessagesSubject = new Subject();
+    public arrayMessages$ = this.arrayMessagesSubject.asObservable();
 
     constructor(
         private confService: ConfiguracionService,
         private authService: ImplicitAutenticationService,
     ) {
-        NotificacionesService.listMessage = [];
+        this.listMessage = [];
+        this.connect();
+        this.queryNotification('ADMIN_CAMPUS');     
+    }
+
+    connect() {
         if (this.authService.live()) {
             this.payload = this.authService.getPayload();
-            NotificacionesService.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.payload.role}`);
-            console.log('hey hey');
-            this.queryNotification('ADMIN_CAMPUS');
-            NotificacionesService.messagesSubject
+            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.payload.role}`);
+            this.messagesSubject
                 .pipe(
                     map((msn) => {
-                        NotificacionesService.listMessage = [...[msn], ...NotificacionesService.listMessage];
-                        NotificacionesService.noNotifySubject.next(NotificacionesService.listMessage.length);
-                        NotificacionesService.arrayMessagesSubject.next(NotificacionesService.listMessage);
-                    })
+                        this.listMessage = [...[msn], ...this.listMessage];
+                        this.noNotifySubject.next(this.listMessage.length);
+                        this.arrayMessagesSubject.next(this.listMessage);
+                        return msn
+                    }),
                 )
                 .subscribe(
-                    (msg: any) => console.log('Nueva notificación: ' + msg), 
-                    err => console.log(err),
-                    () => console.log('complete')
+                    (msg: any) => console.info('Nueva notificación', msg),
+                    err => {
+                        console.info(err);
+                        this.connect();
+                    },
+                    () => console.info('complete'),
                 );
         }
     }
-    
-    connect(){
-        
+
+    close() {
+        this.messagesSubject.unsubscribe();
     }
 
     addMessage(message) {
-        NotificacionesService.listMessage = [...[message], ...NotificacionesService.listMessage];
-        NotificacionesService.noNotifySubject.next(NotificacionesService.listMessage.length);
-        NotificacionesService.arrayMessagesSubject.next(NotificacionesService.listMessage);
+        this.listMessage = [...[message], ...this.listMessage];
+        this.noNotifySubject.next(this.listMessage.length);
+        this.arrayMessagesSubject.next(this.listMessage);
     }
 
     queryNotification(profile) {
