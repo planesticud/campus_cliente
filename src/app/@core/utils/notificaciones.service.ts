@@ -10,14 +10,13 @@ import { map } from 'rxjs-compat/operators/map';
 const CHAT_URL = GENERAL.ENTORNO.NOTIFICACION_SERVICE;
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class NotificacionesService {
     public messagesSubject: Subject<any>;
 
     public listMessage: any;
     public payload: any;
-    private conected = false;
 
     private noNotifySubject = new Subject();
     public noNotify$ = this.noNotifySubject.asObservable();
@@ -31,7 +30,7 @@ export class NotificacionesService {
     ) {
         this.listMessage = [];
         this.connect();
-        this.queryNotification('ADMIN_CAMPUS');     
+        this.queryNotification('ADMIN_CAMPUS');
     }
 
     connect() {

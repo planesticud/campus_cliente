@@ -35,8 +35,8 @@ export class HeaderComponent implements OnInit {
       .subscribe((event) => {
         this.onContecxtItemSelection(event.item.title);
       });
-    
-      this.notificacionService.arrayMessages$
+
+    this.notificacionService.arrayMessages$
       .subscribe((notification: any) => {
         const temp = notification.map((notify: any) => {
           return { title: notify.Content.Message, icon: 'fa fa-commenting-o' }
