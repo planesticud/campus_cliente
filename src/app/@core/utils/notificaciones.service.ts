@@ -30,7 +30,14 @@ export class NotificacionesService {
     ) {
         this.listMessage = [];
         this.connect();
-        this.queryNotification('ADMIN_CAMPUS');
+        if (this.authService.live()) {
+            this.queryNotification('ADMIN_CAMPUS');
+        }
+    }
+
+    getNotificaciones() {
+        this.noNotifySubject.next(this.listMessage.length);
+        this.arrayMessagesSubject.next(this.listMessage);
     }
 
     connect() {

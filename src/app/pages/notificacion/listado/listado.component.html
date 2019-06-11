@@ -25,7 +25,7 @@
               {{notificacion.Content.Message}}
             </h4>
             <h4 matLine>
-              {{notificacion.FechaCreacion}}
+              {{notificacion.FechaCreacion | amLocale:'es' | amTimeAgo:true }}
             </h4>
           </mat-list-item>
         </mat-list>

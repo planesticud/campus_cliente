@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ToasterModule } from 'angular2-toaster';
+import { MomentModule } from 'ngx-moment';
 import { SharedModule } from '../../shared/shared.module';
 // import { NotificacionesService } from '../../@core/utils/notificaciones.service';
 
@@ -13,6 +14,7 @@ import { SharedModule } from '../../shared/shared.module';
     Ng2SmartTableModule,
     ToasterModule,
     SharedModule,
+    MomentModule,
   ],
   declarations: [
     ...routedComponents,

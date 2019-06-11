@@ -17,8 +17,7 @@ export class ListadoComponent {
   searchTerm$ = new Subject<string>();
 
   notificaciones: any;
-  constructor(private notificacionService: NotificacionesService,
-    ) {
+  constructor(private notificacionService: NotificacionesService) {
     this.notificaciones = [];
     this.notificacionService.arrayMessages$
       .subscribe((notification: any) => {
@@ -32,6 +31,7 @@ export class ListadoComponent {
       ).subscribe(response => {
         this.notificaciones = response;
       })
+    this.notificacionService.getNotificaciones();
 
   }
 
