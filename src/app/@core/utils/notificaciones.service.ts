@@ -43,7 +43,7 @@ export class NotificacionesService {
     connect() {
         if (this.authService.live()) {
             this.payload = this.authService.getPayload();
-            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.payload.role}`);
+            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=ADMIN_CAMPUS`);
             this.messagesSubject
                 .pipe(
                     map((msn) => {
@@ -72,46 +72,28 @@ export class NotificacionesService {
         this.listMessage = [...[message], ...this.listMessage];
         this.noNotifySubject.next(this.listMessage.length);
         this.arrayMessagesSubject.next(this.listMessage);
+        console.info(this.listMessage)
     }
 
     queryNotification(profile) {
-        this.confService.get('notificacion?query=Usuario:' + this.payload.sub + '&sortby=FechaCreacion&order=asc&limit=-1')
+        this.confService.get('notificacion_estado_usuario?query=Usuario:' + this.payload.sub + ',Activo:true&sortby=id&order=asc&limit=-1')
             .subscribe((resp: any) => {
                 if (resp !== null) {
                     from(resp)
                         .subscribe((notify: any) => {
                             const message = {
-                                Type: notify.NotificacionConfiguracion.Tipo.Id,
-                                Content: JSON.parse(notify.CuerpoNotificacion),
-                                User: notify.NotificacionConfiguracion.Aplicacion.Nombre,
-                                FechaCreacion: new Date(notify.FechaCreacion),
-
+                                Type: notify.Notificacion.NotificacionConfiguracion.Tipo.Id,
+                                Content: JSON.parse(notify.Notificacion.CuerpoNotificacion),
+                                User: notify.Notificacion.NotificacionConfiguracion.Aplicacion.Nombre,
+                                FechaCreacion: new Date(notify.Notificacion.FechaCreacion),
+                                FechaEdicion: new Date(notify.Fecha),
+                                Estado: notify.NotificacionEstado.CodigoAbreviacion
                             };
                             this.addMessage(message);
                         });
                 }
-            });
-        this.confService.get('notificacion_configuracion_perfil?query=Perfil.Nombre:' + profile + '&limit=-1')
-            .subscribe(response => {
-                from(response)
-                    .subscribe((res: any) => {
-                        this.confService.get('notificacion?query=NotificacionConfiguracion.Id:' +
-                            res.NotificacionConfiguracion.Id + ',Usuario:' + '&sortby=FechaCreacion&order=asc&limit=-1')
-                            .subscribe((resp: any) => {
-                                if (resp !== null) {
-                                    from(resp)
-                                        .subscribe((notify: any) => {
-                                            const message = {
-                                                Type: notify.NotificacionConfiguracion.Tipo.Id,
-                                                Content: JSON.parse(notify.CuerpoNotificacion),
-                                                User: notify.NotificacionConfiguracion.Aplicacion.Nombre,
-                                                FechaCreacion: new Date(notify.FechaCreacion),
-                                            };
-                                            this.addMessage(message);
-                                        });
-                                }
-                            });
-                    });
+
             });
     }
+
 }
