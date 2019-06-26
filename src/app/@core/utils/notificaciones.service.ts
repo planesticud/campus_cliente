@@ -87,13 +87,14 @@ export class NotificacionesService {
                                 User: notify.Notificacion.NotificacionConfiguracion.Aplicacion.Nombre,
                                 FechaCreacion: new Date(notify.Notificacion.FechaCreacion),
                                 FechaEdicion: new Date(notify.Fecha),
-                                Estado: notify.NotificacionEstado.CodigoAbreviacion
+                                Estado: notify.NotificacionEstado.CodigoAbreviacion,
                             };
                             this.addMessage(message);
                         });
                 }
 
             });
+        
     }
 
 }
