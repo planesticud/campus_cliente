@@ -2,7 +2,7 @@ import { ImplicitAutenticationService } from '../../../@core/utils/implicit_aute
 import { NuxeoService } from '../../../@core/utils/nuxeo.service';
 import { PropuestaGrado } from './../../../@core/data/models/propuesta_grado';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { DocumentoService } from '../../../@core/data/documento.service';
 import { FORM_PROPUESTA_GRADO } from './form-propuesta_grado';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
@@ -50,7 +50,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
     private autenticationService: ImplicitAutenticationService,
     private documentoService: DocumentoService,
     private nuxeoService: NuxeoService,
-    private admisionesService: AdmisionesService,
+    private inscripcionService: InscripcionService,
     private store: Store<IAppState>,
     private listService: ListService,
     private ente_id: UserService,
@@ -92,13 +92,13 @@ export class CrudPropuestaGradoComponent implements OnInit {
 
   public buscarID_prop(): void {
     this.ENTE_id = this.ente_id.getEnte();
-    this.admisionesService.get('admision/?query=Aspirante:' + this.ENTE_id +
+    this.inscripcionService.get('inscripcion/?query=PersonaId:' + this.ENTE_id +
       '&sortby=Id&order=desc')
       .subscribe(res_ente => {
         console.info(JSON.stringify(res_ente));
         this.admision_id = res_ente[0].Id;
         if (res_ente[0].Aspirante === this.ente_id.getEnte()) {
-          this.admisionesService.get('propuesta/?query=Admision:' + this.admision_id)
+          this.inscripcionService.get('propuesta/?query=Inscripcion:' + this.admision_id)
             .subscribe(res => {
               const tempo = <any>res[0].Id
               this.prop_id = tempo;
@@ -140,7 +140,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
     this.loading = true;
     if (this.prop_id !== undefined && this.prop_id !== 0 &&
       this.prop_id.toString() !== '') {
-      this.admisionesService.get('propuesta/?query=id:' + this.prop_id)
+      this.inscripcionService.get('propuesta/?query=id:' + this.prop_id)
         .subscribe(res => {
           if (res !== null) {
             const temp = <PropuestaGrado>res[0];
@@ -216,7 +216,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
                 if (Object.keys(response).length === files.length) {
                   const documentos_actualizados = <any>response;
                   this.info_propuesta_grado.FormatoProyecto = this.FormatoProyecto;
-                  this.admisionesService.put('propuesta', this.info_propuesta_grado, this.info_propuesta_grado.Id)
+                  this.inscripcionService.put('propuesta', this.info_propuesta_grado, this.info_propuesta_grado.Id)
                     .subscribe(res => {
                       if (documentos_actualizados['FormatoProyecto'] !== undefined) {
                         this.info_propuesta_grado.FormatoProyecto = documentos_actualizados['FormatoProyecto'].url + '';
@@ -253,7 +253,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
                 });
           } else {
             this.info_propuesta_grado.FormatoProyecto = this.FormatoProyecto;
-            this.admisionesService.put('propuesta', this.info_propuesta_grado, this.prop_id)
+            this.inscripcionService.put('propuesta', this.info_propuesta_grado, this.prop_id)
               .subscribe(res => {
                 this.eventChange.emit(true);
                 this.loadPropuestaGrado();
@@ -306,7 +306,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
                 if (this.filesUp['FormatoProyecto'] !== undefined) {
                   this.info_propuesta_grado.FormatoProyecto = this.filesUp['FormatoProyecto'].Id;
                 }
-                this.admisionesService.post('propuesta', this.info_propuesta_grado)
+                this.inscripcionService.post('propuesta', this.info_propuesta_grado)
                   .subscribe(res => {
                     const r = <any>res
                     if (r !== null && r.Type !== 'error') {

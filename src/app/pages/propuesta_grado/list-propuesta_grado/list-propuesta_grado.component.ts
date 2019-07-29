@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
@@ -19,7 +19,7 @@ export class ListPropuestaGradoComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private translate: TranslateService, private admisionesService: AdmisionesService, private toasterService: ToasterService) {
+  constructor(private translate: TranslateService, private inscripcionService: InscripcionService, private toasterService: ToasterService) {
     this.loadData();
     this.cargarCampos();
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -102,7 +102,7 @@ export class ListPropuestaGradoComponent implements OnInit {
   }
 
   loadData(): void {
-    this.admisionesService.get('propuesta/?limit=0').subscribe(res => {
+    this.inscripcionService.get('propuesta/?limit=0').subscribe(res => {
       if (res !== null) {
         const data = <Array<any>>res;
         this.source.load(data);
@@ -135,7 +135,7 @@ export class ListPropuestaGradoComponent implements OnInit {
     Swal(opt)
       .then((willDelete) => {
         if (willDelete.value) {
-          this.admisionesService.delete('propuesta/', event.data).subscribe(res => {
+          this.inscripcionService.delete('propuesta/', event.data).subscribe(res => {
             if (res !== null) {
               this.loadData();
               this.showToast('info', 'deleted', 'PropuestaGrado deleted');

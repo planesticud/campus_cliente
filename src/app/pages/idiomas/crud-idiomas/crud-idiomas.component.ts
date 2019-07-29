@@ -12,7 +12,8 @@ import Swal from 'sweetalert2';
 import 'style-loader!angular2-toaster/toaster.css';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PeriodoAcademico } from './../../../@core/data/models/periodo_academico';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
+import { CoreService } from '../../../@core/data/core.service';
 
 @Component({
   selector: 'ngx-crud-idiomas',
@@ -46,7 +47,8 @@ export class CrudIdiomasComponent implements OnInit {
     private translate: TranslateService,
     private users: UserService,
     private idiomaService: IdiomaService,
-    private admisionesService: AdmisionesService,
+    private inscripcionService: InscripcionService,
+    private coreService: CoreService,
     private toasterService: ToasterService) {
     this.formInfoIdioma = FORM_IDIOMAS;
     this.construirForm();
@@ -294,7 +296,7 @@ export class CrudIdiomasComponent implements OnInit {
   }
 
   CargarPeriodo(): void {
-    this.admisionesService.get('periodo_academico/?query=Activo:true&sortby=Id&order=desc&limit=1')
+    this.coreService.get('periodo/?query=Activo:true&sortby=Id&order=desc&limit=1')
       .subscribe(res => {
         const r = <any>res;
         if (res !== null && r.Type !== 'error') {

@@ -17,7 +17,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { ListService } from './store/services/list.service';
 import { StoreModule } from '@ngrx/store';
 import { rootReducer } from './store/rootReducer';
-import { AdmisionesService } from './data/admisiones.service';
+import { InscripcionService } from './data/inscripcion.service';
+import { CoreService } from './data/core.service';
 import { IdiomaService } from './data/idioma.service';
 import { ProgramaAcademicoService } from './data/programa_academico.service';
 import { ProduccionAcademicaService } from './data/produccion_academica.service';
@@ -101,7 +102,8 @@ export const NB_CORE_PROVIDERS = [
     AuthGuard,
     ListService,
     PersonaService,
-    AdmisionesService,
+    InscripcionService,
+    CoreService,
     IdiomaService,
     UbicacionesService,
     ProgramaAcademicoService,

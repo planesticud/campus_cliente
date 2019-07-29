@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { UserService } from '../../../@core/data/users.service';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { ProgramaAcademicoService } from '../../../@core/data/programa_academico.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -28,7 +28,7 @@ export class ListAdmisionComponent implements OnInit {
   @Output() eventChange = new EventEmitter();
 
   constructor(private translate: TranslateService,
-    private admisionesService: AdmisionesService,
+    private inscripcionService: InscripcionService,
     private userService: UserService,
     private programaService: ProgramaAcademicoService) {
     this.ente = this.userService.getEnte();
@@ -82,7 +82,7 @@ export class ListAdmisionComponent implements OnInit {
 
   loadData(): void {
     if (this.ente !== 0 && this.ente !== undefined && this.ente.toString() !== '') {
-      this.admisionesService.get('admision/?query=Aspirante:' + this.ente +
+      this.inscripcionService.get('inscripcion/?query=PersonaId:' + this.ente +
         '&limit=0').subscribe(res => {
           if (res !== null) {
             const data = <Array<any>>res;

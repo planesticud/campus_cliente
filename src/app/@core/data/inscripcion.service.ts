@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { GENERAL } from './../../app-config';
+import { GENERAL } from '../../app-config';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -12,10 +12,10 @@ const httpOptions = {
   }),
 };
 
-const path = GENERAL.ENTORNO.ADMISIONES_SERVICE;
+const path = GENERAL.ENTORNO.INSCRIPCION_SERVICE;
 
 @Injectable()
-export class AdmisionesService {
+export class InscripcionService {
 
   constructor(private http: HttpClient) {
   }

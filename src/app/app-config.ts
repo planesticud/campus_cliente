@@ -6,7 +6,7 @@ export const Config = {
     NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
-    ADMISIONES_SERVICE: 'http://localhost:8887/v1/',
+    INSCRIPCION_SERVICE: 'http://localhost:8887/v1/',
     CORE_SERVICE: 'http://localhost:8097/v1/',
     MATRICULA_DESCUENTOS_SERVICE: 'http://localhost:8107/v1/',
     DOCUMENTO_SERVICE: 'http://localhost:8094/v1/',
@@ -52,7 +52,7 @@ export const Config = {
     NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
-    ADMISIONES_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/admision/v1/',
+    INSCRIPCION_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/admision/v1/',
     CORE_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/core/v1/',
     MATRICULA_DESCUENTOS_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/descuento/v1/',
     DOCUMENTO_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/documento/v1/',
@@ -95,7 +95,7 @@ export const Config = {
     ORGANIZACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/organizacion_crud/',
     EXPERIENCIASERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/experiencia_laboral_crud/',
     CAMPUS_MID: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/campus_mid/',
-    ADMISIONES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/admisiones_crud/',
+    INSCRIPCION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/admisiones_crud/',
     PROGRAMA_ACADEMICO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/programa_academico_crud/',
     FORMACION_ACADEMICA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/formacion_academica_crud/',
     IDIOMA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/idiomas_crud/',

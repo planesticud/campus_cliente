@@ -1,11 +1,12 @@
 import { ImplicitAutenticationService } from '../../../@core/utils/implicit_autentication.service';
 import { NuxeoService } from '../../../@core/utils/nuxeo.service';
-import { Admision } from './../../../@core/data/models/admision';
+import { Inscripcion } from './../../../@core/data/models/inscripcion';
 import { InfoPersona } from './../../../@core/data/models/info_persona';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DocumentoService } from '../../../@core/data/documento.service';
 import { CampusMidService } from '../../../@core/data/campus_mid.service';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { CoreService } from '../../../@core/data/core.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { FORM_INFO_PERSONA } from './form-info_persona';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -69,7 +70,8 @@ export class CrudInfoPersonaComponent implements OnInit {
     private nuxeoService: NuxeoService,
     private store: Store<IAppState>,
     private listService: ListService,
-    private admisionesService: AdmisionesService,
+    private coreService: CoreService,
+    private inscripcionService: InscripcionService,
     private userService: UserService,
     private toasterService: ToasterService) {
       this.formInfoPersona = FORM_INFO_PERSONA;
@@ -374,10 +376,12 @@ export class CrudInfoPersonaComponent implements OnInit {
   }
 
   public loadAdmision(): void {
-    this.admisionesService.get('admision/' + this.admision_id)
+    //apenas se aprueban los terminos
+    console.log('load admision 379');
+    /*this.inscripcionService.get('inscripcion/' + this.admision_id)
       .subscribe(res => {
         if (res !== null) {
-          this.info_admision = <Admision>res;
+          this.info_admision = <Inscripcion>res;
           this.aceptaTerminos = true;
         }
       },
@@ -391,30 +395,29 @@ export class CrudInfoPersonaComponent implements OnInit {
               this.translate.instant('GLOBAL.admision'),
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
           });
-        });
+        });*/
   }
 
   createAdmision(ente_id): void {
     this.aspirante = ente_id;
     this.programa = this.userService.getPrograma();
     const admisionPost = {
-      Periodo: {
-        Id: this.periodo.Id,
-      },
-      Aspirante: this.aspirante,
-      ProgramaAcademico: this.programa,
-      EstadoAdmision: {
-        Id: 1,
-      },
+      PeriodoId: 1,
+      PersonaId: this.aspirante,
+      ProgramaAcademicoId: this.programa,
+      TipoInscripcionId: {Id:1},
+      EstadoInscripcionId :{Id:1},
       AceptaTerminos: true,
+      FechaAceptaTerminos: new Date(),
       Id: this.admision_id,
     };
-    this.info_admision = <Admision>admisionPost;
-    this.info_admision.Aspirante = Number(this.info_persona_id);
+    this.info_admision = <Inscripcion>admisionPost;
+    this.info_admision.PersonaId = Number(this.info_persona_id);
     this.info_admision.Id = Number(this.admision_id);
-    this.admisionesService.post('admision', this.info_admision)
+    console.log(this.info_admision);
+    this.inscripcionService.post('inscripcion', this.info_admision)
       .subscribe(res => {
-        this.info_admision = <Admision>res;
+        this.info_admision = <Inscripcion>res;
         this.eventChange.emit(true);
         Swal({
           type: 'info',
@@ -429,7 +432,7 @@ export class CrudInfoPersonaComponent implements OnInit {
     this.loadAdmision();
     this.info_admision.AceptaTerminos = true;
     this.info_admision.ProgramaAcademico = this.userService.getPrograma();
-    this.admisionesService.put('admision', this.info_admision, this.info_admision.Id)
+    this.inscripcionService.put('inscripcion', this.info_admision, this.info_admision.Id)
       .subscribe(res => {
         this.eventChange.emit(true);
         this.showToast('info', this.translate.instant('GLOBAL.actualizar'),
@@ -499,7 +502,7 @@ export class CrudInfoPersonaComponent implements OnInit {
   }
 
   cargarPeriodo(): void {
-    this.admisionesService.get('periodo_academico/?query=Activo:true&sortby=Id&order=desc&limit=1')
+    this.coreService.get('periodo/?query=Activo:true&sortby=Id&order=desc&limit=1')
       .subscribe(res => {
         const r = <any>res;
         if (res !== null && r.Type !== 'error') {

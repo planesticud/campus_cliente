@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { UserService } from '../../../@core/data/users.service';
 import { PropuestaGrado } from './../../../@core/data/models/propuesta_grado';
@@ -24,7 +24,7 @@ export class ViewPropuestaGradoComponent implements OnInit {
 
   @Output('url_editar') url_editar: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private translate: TranslateService, private admisionesService: AdmisionesService, private users: UserService) {
+  constructor(private translate: TranslateService, private inscripcionService: InscripcionService, private users: UserService) {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
     });
     this.ente = this.users.getEnte();
@@ -35,11 +35,11 @@ export class ViewPropuestaGradoComponent implements OnInit {
   }
 
   loadData(): void {
-    this.admisionesService.get('admision/?query=Aspirante:' + this.ente +
+    this.inscripcionService.get('inscripcion/?query=PersonaId:' + this.ente +
       '&limit=0').subscribe(res => {
       if (res !== null) {
         this.admision_id = res[0].Id;
-          this.admisionesService.get('propuesta/?query=Admision:' + this.admision_id)
+          this.inscripcionService.get('propuesta/?query=Inscripcion:' + this.admision_id)
             .subscribe(res2 => {
               this.info_propuesta_grado = <any>res2;
             },

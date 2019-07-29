@@ -4,10 +4,10 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { CampusMidService } from '../../../@core/data/campus_mid.service';
 import { UtilidadesService } from '../../../@core/utils/utilidades.service';
 import { ProgramaAcademicoService } from '../../../@core/data/programa_academico.service';
-import { AdmisionesService } from '../../../@core/data/admisiones.service';
+import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { UserService } from '../../../@core/data/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Admision } from '../../../@core/data/models/admision';
+import { Inscripcion } from '../../../@core/data/models/inscripcion';
 import { IMAGENES } from './imagenes';
 import { formatDate } from '@angular/common';
 import Swal from 'sweetalert2';
@@ -45,7 +45,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   info_ente_id: number;
   info_info_persona: any;
   datos_persona: any;
-  admision: Admision;
+  admision: Inscripcion;
   step = 0;
   cambioTab = 0;
   nForms: number;
@@ -90,7 +90,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   constructor(
     private translate: TranslateService,
     private campusMidService: CampusMidService,
-    private admisionesService: AdmisionesService,
+    private inscripcionService: InscripcionService,
     private userService: UserService,
     private programaService: ProgramaAcademicoService) {
     this.imagenes = IMAGENES;
@@ -181,7 +181,9 @@ export class PosgradoComponent implements OnInit, OnChanges {
   }
 
   getInfoInscripcion() {
-    this.admisionesService.get('admision/' + this.admision_id)
+    //verificar que admision_id no sea undefined
+    /*
+    this.inscripcionService.get('inscripcion/' + this.admision_id)
       .subscribe(admision => {
         const info_admision = <any>admision;
         if (admision !== null  && info_admision.Type !== 'error') {
@@ -216,7 +218,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
               this.translate.instant('GLOBAL.admision'),
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
           });
-        });
+        });*/
   }
 
   useLanguage(language: string) {
@@ -403,7 +405,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
         const r = <any>res;
         if (res !== null && r.Type !== 'error') {
           this.datos_persona = r;
-          this.admision.EstadoAdmision.Id = 2;
+          this.admision.EstadoInscripcionId.Id = 2;
           this.UpdateEstadoAdmision();
         }
       },
@@ -418,7 +420,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   }
 
   UpdateEstadoAdmision() {
-    this.admisionesService.put('admision', this.admision, this.admision.Id)
+    this.inscripcionService.put('admision', this.admision, this.admision.Id)
       .subscribe(res_ad => {
         const r_ad = <any>res_ad;
         if (res_ad !== null && r_ad.Type !== 'error') {

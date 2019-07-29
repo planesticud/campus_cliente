@@ -23,7 +23,7 @@ export class ListReducer {
 
   static ListReducerEstadoAdmision(state: Array<any> = new Array, action) {
     switch (action.type) {
-      case REDUCER_LIST.EstadoAdmision:
+      case REDUCER_LIST.EstadoInscripcion:
         return [...state, action.payload];
       default:
         return state;
