@@ -376,9 +376,7 @@ export class CrudInfoPersonaComponent implements OnInit {
   }
 
   public loadAdmision(): void {
-    //apenas se aprueban los terminos
-    console.log('load admision 379');
-    /*this.inscripcionService.get('inscripcion/' + this.admision_id)
+    this.inscripcionService.get('inscripcion/' + this.admision_id)
       .subscribe(res => {
         if (res !== null) {
           this.info_admision = <Inscripcion>res;
@@ -395,7 +393,7 @@ export class CrudInfoPersonaComponent implements OnInit {
               this.translate.instant('GLOBAL.admision'),
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
           });
-        });*/
+        });
   }
 
   createAdmision(ente_id): void {
@@ -405,8 +403,8 @@ export class CrudInfoPersonaComponent implements OnInit {
       PeriodoId: 1,
       PersonaId: this.aspirante,
       ProgramaAcademicoId: this.programa,
-      TipoInscripcionId: {Id:1},
-      EstadoInscripcionId :{Id:1},
+      TipoInscripcionId: {Id: 1},
+      EstadoInscripcionId : {Id: 1},
       AceptaTerminos: true,
       FechaAceptaTerminos: new Date(),
       Id: this.admision_id,
@@ -414,7 +412,6 @@ export class CrudInfoPersonaComponent implements OnInit {
     this.info_admision = <Inscripcion>admisionPost;
     this.info_admision.PersonaId = Number(this.info_persona_id);
     this.info_admision.Id = Number(this.admision_id);
-    console.log(this.info_admision);
     this.inscripcionService.post('inscripcion', this.info_admision)
       .subscribe(res => {
         this.info_admision = <Inscripcion>res;

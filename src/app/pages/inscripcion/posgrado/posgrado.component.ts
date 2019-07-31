@@ -181,8 +181,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   }
 
   getInfoInscripcion() {
-    //verificar que admision_id no sea undefined
-    /*
+    if(this.admision_id !== undefined){
     this.inscripcionService.get('inscripcion/' + this.admision_id)
       .subscribe(admision => {
         const info_admision = <any>admision;
@@ -218,7 +217,8 @@ export class PosgradoComponent implements OnInit, OnChanges {
               this.translate.instant('GLOBAL.admision'),
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
           });
-        });*/
+        });
+    }
   }
 
   useLanguage(language: string) {

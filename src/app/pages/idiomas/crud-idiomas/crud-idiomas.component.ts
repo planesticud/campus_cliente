@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 import 'style-loader!angular2-toaster/toaster.css';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PeriodoAcademico } from './../../../@core/data/models/periodo_academico';
-import { InscripcionService } from '../../../@core/data/inscripcion.service';
 import { CoreService } from '../../../@core/data/core.service';
 
 @Component({
@@ -47,7 +46,6 @@ export class CrudIdiomasComponent implements OnInit {
     private translate: TranslateService,
     private users: UserService,
     private idiomaService: IdiomaService,
-    private inscripcionService: InscripcionService,
     private coreService: CoreService,
     private toasterService: ToasterService) {
     this.formInfoIdioma = FORM_IDIOMAS;
