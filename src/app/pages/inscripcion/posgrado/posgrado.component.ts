@@ -181,7 +181,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   }
 
   getInfoInscripcion() {
-    if(this.admision_id !== undefined){
+    if (this.admision_id !== undefined) {
     this.inscripcionService.get('inscripcion/' + this.admision_id)
       .subscribe(admision => {
         const info_admision = <any>admision;
