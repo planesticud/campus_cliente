@@ -43,7 +43,6 @@ import { PropuestaGradoModule } from '../propuesta_grado/propuesta_grado.module'
 import { CrudPropuestaGradoComponent } from '../propuesta_grado/crud-propuesta_grado/crud-propuesta_grado.component';
 import { ProduccionAcademicaModule } from '../produccion_academica/produccion_academica.module';
 import { ListProduccionAcademicaComponent } from '../produccion_academica/list-produccion_academica/list-produccion_academica.component';
-import { CrudProduccionAcademicaComponent } from '../produccion_academica/crud-produccion_academica/crud-produccion_academica.component';
 
 @NgModule({
   imports: [
