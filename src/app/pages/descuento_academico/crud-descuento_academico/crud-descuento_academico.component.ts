@@ -48,7 +48,7 @@ export class CrudDescuentoAcademicoComponent implements OnInit {
     this.inscripcion = inscripcion_id;
     if (this.inscripcion !== undefined && this.inscripcion !== null && this.inscripcion !== 0 &&
       this.inscripcion.toString() !== '') {
-        console.info('InscripcionDes: ' + this.inscripcion);
+       // console.info('InscripcionDes: ' + this.inscripcion);
         this.loadOptionsTipoDescuento();
     }
   }
@@ -350,7 +350,7 @@ export class CrudDescuentoAcademicoComponent implements OnInit {
                 contador++;
               }
               if (contadorB >= descuentosdependencia.length) {
-                console.info('Final: ' + contador);
+               // console.info('Final: ' + contador);
                 if (contador <= 0) {
                   this.createDescuentoAcademico(DescuentoAcademico);
                 } else if (contador >= 2) {

@@ -159,7 +159,7 @@ export class CrudOtroDocumentoComponent implements OnInit {
         if (willDelete.value) {
           this.info_otro_documento = <OtroDocumento>otroDocumento;
           this.info_otro_documento.Persona = this.users.getEnte();
-          console.info(JSON.stringify(this.info_otro_documento));
+        //  console.info(JSON.stringify(this.info_otro_documento));
           this.produccionAcademicaService.post('otro_documento', this.info_otro_documento)
             .subscribe(res => {
               const r = <any>res;

@@ -40,6 +40,7 @@ export class CrudInformacionContactoComponent implements OnInit {
   denied_acces: boolean = false;
   paisSeleccionado: any;
   departamentoSeleccionado: any;
+  ciudadSeleccionada: any;
   datosPost: any;
   datosGet: any;
   datosPut: any;
@@ -66,8 +67,10 @@ export class CrudInformacionContactoComponent implements OnInit {
     // this.formInformacionContacto.titulo = this.translate.instant('GLOBAL.informacion_contacto');
     this.formInformacionContacto.btn = this.translate.instant('GLOBAL.guardar');
     for (let i = 0; i < this.formInformacionContacto.campos.length; i++) {
-      this.formInformacionContacto.campos[i].label = this.translate.instant('GLOBAL.' + this.formInformacionContacto.campos[i].label_i18n);
-      this.formInformacionContacto.campos[i].placeholder = this.translate.instant('GLOBAL.placeholder_' + this.formInformacionContacto.campos[i].label_i18n);
+      this.formInformacionContacto.campos[i].label = this.translate.instant('GLOBAL.' +
+      this.formInformacionContacto.campos[i].label_i18n);
+      this.formInformacionContacto.campos[i].placeholder = this.translate.instant('GLOBAL.placeholder_' +
+      this.formInformacionContacto.campos[i].label_i18n);
     }
   }
 
@@ -76,12 +79,17 @@ export class CrudInformacionContactoComponent implements OnInit {
   }
 
   getSeleccion(event) {
+    console.info(JSON.stringify(event.valor));
     if (event.nombre === 'PaisResidencia') {
       this.paisSeleccionado = event.valor;
       this.loadOptionsDepartamentoResidencia();
     } else if (event.nombre === 'DepartamentoResidencia') {
       this.departamentoSeleccionado = event.valor;
-      this.loadOptionsCiudadResidencia();
+     this.loadOptionsCiudadResidencia();
+    }else if(event.nombre === 'CiudadResidencia'){
+      console.info("Entro evento: "+event.valor);
+      this.ciudadSeleccionada = event.valor;
+      this.loadOptionsLocalidadResidencia();
     }
   }
 
@@ -89,7 +97,7 @@ export class CrudInformacionContactoComponent implements OnInit {
     let consultaHijos: Array<any> = [];
     const departamentoResidencia: Array<any> = [];
     if (this.paisSeleccionado) {
-      this.ubicacionesService.get('relacion_lugares/?query=LugarPadre.Id:' + this.paisSeleccionado.Id + ',LugarHijo.Activo:true&limit=0')
+      this.ubicacionesService.get('relacion_lugares/?query=LugarPadre.Id:' + this.paisSeleccionado.Id +',LugarHijo.Activo:true&limit=0')
         .subscribe(res => {
           if (res !== null) {
             consultaHijos = <Array<Lugar>>res;
@@ -141,6 +149,35 @@ export class CrudInformacionContactoComponent implements OnInit {
     }
   }
 
+  loadOptionsLocalidadResidencia(): void{
+    let consultaHijos: Array<any> = [];
+    const localidadResidencia: Array<any> = [];
+    if (this.ciudadSeleccionada) {
+      this.ubicacionesService.get('relacion_lugares/?query=LugarPadre.Id:' + this.ciudadSeleccionada.Id + ',LugarHijo.Activo:true&limit=0')
+        .subscribe(res => {
+          if (res !== null) {
+            console.info(JSON.stringify(res));
+            consultaHijos = <Array<Lugar>>res;
+            for (let i = 0; i < consultaHijos.length; i++) {
+              localidadResidencia.push(consultaHijos[i].LugarHijo);
+            }
+          }
+          this.formInformacionContacto.campos[this.getIndexForm('LocalidadResidencia')].opciones = localidadResidencia;
+        },
+          (error: HttpErrorResponse) => {
+            Swal({
+              type: 'error',
+              title: error.status + '',
+              text: this.translate.instant('ERROR.' + error.status),
+              footer: this.translate.instant('GLOBAL.cargar') + '-' +
+                this.translate.instant('GLOBAL.informacion_contacto') + '|' +
+                this.translate.instant('GLOBAL.localidad_residencia'),
+              confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+            });
+          });
+    }
+  }
+
   getIndexForm(nombre: String): number {
     for (let index = 0; index < this.formInformacionContacto.campos.length; index++) {
       const element = this.formInformacionContacto.campos[index];
@@ -165,6 +202,7 @@ export class CrudInformacionContactoComponent implements OnInit {
               PaisResidencia: this.datosGet.UbicacionEnte.Lugar.PAIS,
               DepartamentoResidencia: this.datosGet.UbicacionEnte.Lugar.DEPARTAMENTO,
               CiudadResidencia: this.datosGet.UbicacionEnte.Lugar.CIUDAD,
+              LocalidadResidencia: this.datosGet.UbicacionEnte.Lugar.LOCALIDAD,
               IdLugarEnte: this.datosGet.UbicacionEnte.Id,
               IdDireccionEnte: this.datosGet.UbicacionEnte.Atributos[1].Id,
               DireccionResidencia: this.datosGet.UbicacionEnte.Atributos[1].Valor,
@@ -192,6 +230,8 @@ export class CrudInformacionContactoComponent implements OnInit {
 
             this.formInformacionContacto.campos[this.getIndexForm('DepartamentoResidencia')].opciones[0] = this.datosGet.UbicacionEnte.Lugar.DEPARTAMENTO;
             this.formInformacionContacto.campos[this.getIndexForm('CiudadResidencia')].opciones[0] = this.info_informacion_contacto.CiudadResidencia;
+            // this.formInformacionContacto.campos[this.getIndexForm('CiudadResidencia')].opciones[0] = this.datosGet.UbicacionEnte.Lugar.CIUDAD;
+            // this.formInformacionContacto.campos[this.getIndexForm('LocalidadResidencia')].opciones[0] = this.info_informacion_contacto.LocalidadResidencia;
             this.loading = false;
           }
         },

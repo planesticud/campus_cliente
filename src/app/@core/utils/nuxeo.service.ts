@@ -61,7 +61,7 @@ export class NuxeoService {
                         .subscribe(res => {
                             if (res !== null) {
                                 const tipoDocumento = <TipoDocumento>res;
-                                console.info(tipoDocumento);
+                               // console.info(tipoDocumento);
                                 NuxeoService.nuxeo.operation('Document.Create')
                                     .params({
                                         type: tipoDocumento.TipoDocumentoNuxeo,
@@ -94,12 +94,12 @@ export class NuxeoService {
                                                     });
                                             })
                                             .catch(function (error) {
-                                                console.info(error);
+                                               // console.info(error);
                                                 return error;
                                             });
                                     })
                                     .catch(function (error) {
-                                        console.info(error);
+                                       // console.info(error);
                                         return error;
                                     })
                             }
@@ -118,7 +118,7 @@ export class NuxeoService {
                     .subscribe(res => {
                         if (res !== null) {
                             const documento_temp = <any>res[0];
-                            console.info(this.documentos);
+                           // console.info(this.documentos);
                             NuxeoService.nuxeo.connect()
                             NuxeoService.nuxeo.batchUpload()
                                 .upload(nuxeoBlob)

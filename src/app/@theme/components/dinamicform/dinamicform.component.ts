@@ -102,12 +102,12 @@ export class DinamicformComponent implements OnInit, OnChanges {
   }
 
   onChange(event, c) {
-    console.info(c.valor);
+   // console.info(c.valor);
     if (c.valor !== undefined) {
       c.urlTemp = URL.createObjectURL(event.srcElement.files[0])
       c.url = this.cleanURL(c.urlTemp);
       c.valor = event.srcElement.files[0];
-      console.info(c);
+     // console.info(c);
       this.validCampo(c);
       c.File = event.srcElement.files[0];
     }
@@ -146,7 +146,7 @@ export class DinamicformComponent implements OnInit, OnChanges {
       if (c.valor === null) {
         c.valor = '';
       }
-      console.info((c.etiqueta === 'file' && c.valor.name === undefined));
+     // console.info((c.etiqueta === 'file' && c.valor.name === undefined));
     }
     if (c.requerido && ((c.valor === '' && c.etiqueta !== 'file') || c.valor === null || c.valor === undefined ||
       (JSON.stringify(c.valor) === '{}' && c.etiqueta !== 'file') || JSON.stringify(c.valor) === '[]')

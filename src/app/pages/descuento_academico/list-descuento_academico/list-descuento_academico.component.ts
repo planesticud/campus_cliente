@@ -119,7 +119,7 @@ export class ListDescuentoAcademicoComponent implements OnInit {
                       const id_aux = this.solicituddescuento.Id;
                       this.mid.get('descuento_academico/?PersonaId=' + this.persona + '&SolicitudId=' + id_aux)
                         .subscribe(res => {
-                          console.info(JSON.stringify(res))
+                         // console.info(JSON.stringify(res))
                           if (res !== null) {
                             this.data.push(<SolicitudDescuento>res);
                             this.loading = false;

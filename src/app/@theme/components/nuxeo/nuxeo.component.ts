@@ -25,7 +25,7 @@ export class NuxeoComponent implements OnChanges {
                     documentoservice.get('tipo_documento/' + element.IdDocumento)
                         .subscribe(res => {
                             if (res !== null) {
-                                console.info(res);
+                               // console.info(res);
                                 nuxeo.operation('Document.Create')
                                     .params({
                                         type: res.Extension,
@@ -52,18 +52,18 @@ export class NuxeoComponent implements OnChanges {
                                                         }
                                                         documentoservice.post('documento', documentoPost)
                                                             .subscribe(resuestaPost => {
-                                                                console.info(resuestaPost);
+                                                              //  console.info(resuestaPost);
                                                                 saveApi.emit(resuestaPost);
                                                             })
                                                     });
                                             })
                                             .catch(function (error) {
-                                                console.info(error);
+                                              //  console.info(error);
                                                 throw error;
                                             });
                                     })
                                     .catch(function (error) {
-                                        console.info(error);
+                                      //  console.info(error);
                                         throw error;
                                     })
 
@@ -83,7 +83,7 @@ export class NuxeoComponent implements OnChanges {
                 .then(function (response) {
                     response.fetchBlob()
                         .then(function (fileUrl) {
-                            console.info(fileUrl);
+                           // console.info(fileUrl);
                             url = URL.createObjectURL(fileUrl);
                             urlfile.emit(url);
                             window.open(url);
@@ -91,15 +91,15 @@ export class NuxeoComponent implements OnChanges {
                         .catch(function (response2) {
                             error = response2;
                         });
-                    console.info(response);
+                   // console.info(response);
                 })
                 .catch(function (response) {
                     error = response
                 });
             if (error !== null) {
-                console.info(error);
+               // console.info(error);
             } else {
-                console.info(url);
+               // console.info(url);
             }
         };
     }
@@ -114,7 +114,7 @@ export class NuxeoComponent implements OnChanges {
             },
         });
         if (changes.files !== undefined && changes.files !== []) {
-            console.info(changes);
+           // console.info(changes);
             if (changes.files.currentValue !== undefined) {
                 this.files = changes.files.currentValue;
                 this.guardar(this.files, this.nuxeo, this.saveApi, this.documentoService);

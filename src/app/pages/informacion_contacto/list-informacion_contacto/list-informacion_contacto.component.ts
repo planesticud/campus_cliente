@@ -66,6 +66,13 @@ export class ListInformacionContactoComponent implements OnInit {
           valuePrepareFunction: (value) => {
             return value;
           },
+        LocalidadResidencia: {
+          title: this.translate.instant('GLOBAL.localidad_residencia'),
+          // type: 'lugar;',
+          valuePrepareFunction: (value) => {
+            return value;
+          },
+        },
         },
         DireccionResidencia: {
           title: this.translate.instant('GLOBAL.direccion_residencia'),

@@ -77,6 +77,18 @@ export let FORM_INFORMACION_CONTACTO = {
             tipo: 'Lugar',
             key: 'Nombre',
             opciones: [],
+            entrelazado: true,
+        },
+        {
+            etiqueta: 'select',
+            claseGrid: 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
+            nombre: 'LocalidadResidencia',
+            label_i18n: 'localidad_residencia',
+            placeholder_i18n: 'localidad_residencia',
+            requerido: true,
+            tipo: 'Lugar',
+            key: 'Nombre',
+            opciones: [],
         },
         {
             etiqueta: 'input',

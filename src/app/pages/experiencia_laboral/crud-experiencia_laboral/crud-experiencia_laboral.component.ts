@@ -607,7 +607,7 @@ export class CrudExperienciaLaboralComponent implements OnInit {
   }
 
   createOrganizacion(org: any, exp: any): void {
-    console.info(JSON.stringify(org));
+   // console.info(JSON.stringify(org));
     this.campusMidService.post('organizacion/', org).subscribe(res => {
       const identificacion = <any>res;
       if (identificacion !== null && identificacion.Type !== 'error') {

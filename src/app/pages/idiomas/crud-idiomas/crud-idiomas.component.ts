@@ -35,7 +35,7 @@ export class CrudIdiomasComponent implements OnInit {
   set admision(inscripcion_id: number) {
     if (inscripcion_id !== undefined && inscripcion_id !== 0 && inscripcion_id.toString() !== '') {
       this.inscripcion_id = inscripcion_id;
-      console.info('Idioma inscripcion: ' + this.inscripcion_id);
+     // console.info('Idioma inscripcion: ' + this.inscripcion_id);
     }
   }
 
@@ -229,7 +229,7 @@ export class CrudIdiomasComponent implements OnInit {
                       .subscribe(rexamen => {
                         const examen = <any>rexamen[0];
                         examen.Idioma = this.info_idioma.Idioma.Id,
-                        console.info(JSON.stringify(examen));
+                       // console.info(JSON.stringify(examen));
                         this.inscripcionService.post('inscripcion_posgrado/', examen)
                           .subscribe(resexamen => {
                             const rex = <any>resexamen;
@@ -344,7 +344,7 @@ export class CrudIdiomasComponent implements OnInit {
                       Activo: true,
                       InscripcionId: {Id: (1 * this.inscripcion_id)},
                     };
-                    console.info(JSON.stringify(examen));
+                   // console.info(JSON.stringify(examen));
                     this.inscripcionService.post('inscripcion_posgrado/', examen)
                       .subscribe(resexamen => {
                         const rex = <any>resexamen;
@@ -424,7 +424,7 @@ export class CrudIdiomasComponent implements OnInit {
         const r = <any>res;
         if (res !== null && r.Type !== 'error') {
           this.periodo = <PeriodoAcademico>res[0]; // se carga el periodo academico activo mas reciente
-          console.info(JSON.stringify(this.periodo));
+        //  console.info(JSON.stringify(this.periodo));
         }
       },
         (error: HttpErrorResponse) => {

@@ -284,7 +284,7 @@ export class ListDocumentoProgramaComponent implements OnInit {
   onChange(event) {
     if (event) {
       this.uid = 0;
-      console.info(this.uid);
+     // console.info(this.uid);
       this.loadData();
     }
   }

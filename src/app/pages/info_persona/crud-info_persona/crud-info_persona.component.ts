@@ -35,7 +35,7 @@ export class CrudInfoPersonaComponent implements OnInit {
   set persona(info_persona_id: number) {
     this.info_persona_id = info_persona_id;
     this.loadInfoPersona();
-    console.info('InfoPersonaId: ' + info_persona_id);
+   // console.info('InfoPersonaId: ' + info_persona_id);
   }
 
   @Input('inscripcion_id')
@@ -43,7 +43,7 @@ export class CrudInfoPersonaComponent implements OnInit {
     this.inscripcion_id = inscripcion_id;
     if (this.inscripcion_id !== undefined && this.inscripcion_id !== 0 && this.inscripcion_id.toString() !== '') {
       this.loadInscripcion();
-      console.info('inscripcionId: ' + inscripcion_id);
+     // console.info('inscripcionId: ' + inscripcion_id);
     }
   }
 
@@ -212,11 +212,11 @@ export class CrudInfoPersonaComponent implements OnInit {
                   this.info_info_persona.SoporteDocumento = this.filesUp['SoporteDocumento'].Id;
                 }
                 this.info_info_persona.Usuario = this.autenticationService.getPayload().sub;
-                console.info(JSON.stringify(this.info_info_persona));
+               // console.info(JSON.stringify(this.info_info_persona));
                 this.campusMidService.post('persona/guardar_persona', this.info_info_persona)
                   .subscribe(res => {
                     const r = <any>res
-                    console.info(JSON.stringify(res));
+                   // console.info(JSON.stringify(res));
                     if (r !== null && r.Type !== 'error') {
 
                       this.info_persona_id = r.Id;
@@ -530,7 +530,7 @@ export class CrudInfoPersonaComponent implements OnInit {
         const r = <any>res;
         if (res !== null && r.Type !== 'error') {
           this.periodo = <any>res[0];
-          console.info(this.periodo);
+         // console.info(this.periodo);
         }
       },
         (error: HttpErrorResponse) => {

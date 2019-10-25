@@ -4,6 +4,7 @@ export class InformacionContacto {
   PaisResidencia: Lugar;
   DepartamentoResidencia: Lugar;
   CiudadResidencia: Lugar;
+  LocalidadResidencia: Lugar;
   DireccionResidencia: string;
   EstratoResidencia: number;
   CodigoPostal: string;

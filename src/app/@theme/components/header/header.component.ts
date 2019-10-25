@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    console.info(this.autenticacion.logout());
+   // console.info(this.autenticacion.logout());
     // window.location.replace(this.autenticacion.logout());
   }
 

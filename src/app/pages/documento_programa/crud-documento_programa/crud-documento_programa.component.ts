@@ -330,7 +330,7 @@ export class CrudDocumentoProgramaComponent implements OnInit {
                   });
                 });
           } else {
-            console.info(JSON.stringify(this.Documento));
+           // console.info(JSON.stringify(this.Documento));
             this.info_documento_programa.DocumentoId = this.Documento;
             this.info_documento_programa.Id = this.documento_programa_id;
             this.info_documento_programa.DocumentoProgramaId = this.info_documento_programa.DocumentoProgramaId;

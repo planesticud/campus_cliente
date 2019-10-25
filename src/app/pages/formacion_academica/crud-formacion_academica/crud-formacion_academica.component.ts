@@ -548,7 +548,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
                 if (this.filesUp['Documento'] !== undefined) {
                   this.info_formacion_academica.Documento = this.filesUp['Documento'].Id;
                 }
-                console.info(JSON.stringify(this.info_formacion_academica));
+               // console.info(JSON.stringify(this.info_formacion_academica));
                 this.campusMidService.post('formacion_academica/', this.info_formacion_academica)
                   .subscribe(res => {
                     const r = <any>res;

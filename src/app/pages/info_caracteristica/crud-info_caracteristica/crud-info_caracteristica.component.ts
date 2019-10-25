@@ -254,7 +254,7 @@ export class CrudInfoCaracteristicaComponent implements OnInit {
           info_info_caracteristica_post.Lugar = {
             Lugar: info_info_caracteristica_post.LugarAnt,
           };
-          console.info(JSON.stringify(info_info_caracteristica_post));
+          // console.info(JSON.stringify(info_info_caracteristica_post));
           this.campusMidService.post('persona/guardar_complementarios', info_info_caracteristica_post)
             .subscribe(res => {
               if (res !== null) {

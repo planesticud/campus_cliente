@@ -49,7 +49,7 @@ export class CrudPropuestaGradoComponent implements OnInit {
     this.inscripcion_id = inscripcion_id;
     if (this.inscripcion_id !== undefined && this.inscripcion_id !== null && this.inscripcion_id !== 0 &&
       this.inscripcion_id.toString() !== '') {
-      console.info('InscripcionPro: ' + this.inscripcion_id);
+    //  console.info('InscripcionPro: ' + this.inscripcion_id);
       this.loadPropuestaGrado();
     }
   }
