@@ -453,6 +453,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
     .then((willCreate) => {
       if (willCreate.value) {
         this.info_produccion_academica = <ProduccionAcademicaPost>ProduccionAcademica;
+        console.info('De formuario', JSON.stringify(this.info_produccion_academica));
         // this.info_produccion_academica.Persona = this.user.PersonaId();
         /*this.produccionAcademicaService.post('produccion_academica', this.info_produccion_academica)
           .subscribe(res => {
@@ -472,7 +473,10 @@ export class CrudProduccionAcademicaComponent implements OnInit {
             });
             this.showToast('error', 'error', this.translate.instant('GLOBAL.produccion_no_creada'));
           } else {
-            this.info_produccion_academica = <ProduccionAcademicaPost>res.Body[1];
+            console.info('PrDUCCION_ACADMEICA', JSON.stringify(res));
+            // this.info_produccion_academica = <ProduccionAcademicaPost>res.Body[1];
+            this.info_produccion_academica = <ProduccionAcademicaPost>res;
+            console.info('PrDUCCION_ACADMEICA-2', JSON.stringify(this.info_produccion_academica));
             this.eventChange.emit(true);
             this.showToast('success', this.translate.instant('GLOBAL.crear'), this.translate.instant('GLOBAL.produccion_creada'));
           }
@@ -482,7 +486,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
   }
 
   agregarAutor(mostrarError: boolean, estadoAutor: number): void {
-    if (this.source_authors.find( author => author.Persona === this.autorSeleccionado.Id) ) {
+    if (this.source_authors.find( author => author.PersonaId === this.autorSeleccionado.Id) ) {
       if (mostrarError) {
         Swal({
           type: 'error',
@@ -494,7 +498,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
     } else {
       this.source_authors.push({
         Nombre: this.getFullAuthorName(this.autorSeleccionado),
-        Persona: this.autorSeleccionado.Id,
+        PersonaId: this.autorSeleccionado.Id,
         // EstadoAutorProduccion: this.estadosAutor.filter(estado => estado.Id === 3)[0],
         EstadoAutorProduccionId: this.estadosAutor.filter(estado => estado.Id === estadoAutor)[0],
         // PuedeBorrar: true,
@@ -563,7 +567,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
         const promises = [];
         if (event.data.ProduccionAcademica) {
           // Subir archivos y verificar los
-          // console.log(event.data.ProduccionAcademica);
+          console.info('"PA: "', event.data.ProduccionAcademica);
           // const tempMetadatos = JSON.parse(JSON.stringify(event.data.ProduccionAcademica));
           const tempMetadatos = event.data.ProduccionAcademica;
           const keys = Object.keys(tempMetadatos);
@@ -592,8 +596,8 @@ export class CrudProduccionAcademicaComponent implements OnInit {
         this.info_produccion_academica.Autores = JSON.parse(JSON.stringify(this.source_authors));
         Promise.all(promises)
           .then(() => {
-            // console.log("promesas cumplidas subir produccion");
-            // console.log("metadatos", this.info_produccion_academica.Metadatos);
+            console.info('promesas cumplidas subir produccion');
+            console.info('metadatos', this.info_produccion_academica.Metadatos);
             if ( this.produccion_academica_selected === undefined ) {
               this.createProduccionAcademica(this.info_produccion_academica);
             } else {

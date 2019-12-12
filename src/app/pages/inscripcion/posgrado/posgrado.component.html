@@ -16,7 +16,7 @@
       <ngx-loading [hidden]="!loading"></ngx-loading>
 
       <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" id="info_basica">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" id="info_basica">
           <nb-card class="exp-card" (click)="perfil_editar('info_persona')">
             <nb-card-header>{{ 'GLOBAL.info_basica' | translate }}</nb-card-header>
             <nb-card-body class="icon-form">
@@ -24,9 +24,9 @@
               <p class="percentage">{{percentage_info}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="formacion_academica">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="formacion_academica">
           <nb-card class="exp-card"
             (click)="perfil_editar('formacion_academica')">
             <nb-card-header>{{ 'GLOBAL.formacion_academica' | translate }}</nb-card-header>
@@ -35,9 +35,9 @@
               <p class="percentage">{{percentage_acad}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="experiencia_laboral">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="experiencia_laboral">
           <nb-card class="exp-card"
             (click)="perfil_editar('experiencia_laboral')">
             <nb-card-header>{{ 'GLOBAL.experiencia_laboral' | translate }}</nb-card-header>
@@ -46,7 +46,7 @@
               <p class="percentage">{{percentage_expe}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
         <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="produccion_academica">
           <nb-card class="exp-card"
@@ -59,7 +59,7 @@
           </nb-card>
         </div>
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="documento_programa">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="documento_programa">
           <nb-card class="exp-card"
             (click)="perfil_editar('documento_programa')">
             <nb-card-header>{{ 'GLOBAL.documento_programa' | translate }}</nb-card-header>
@@ -68,9 +68,9 @@
               <p class="percentage">{{percentage_docu}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="descuento_matricula">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="descuento_matricula">
           <nb-card class="exp-card"
             (click)="perfil_editar('descuento_matricula')">
             <nb-card-header>{{ 'GLOBAL.descuento_matricula' | translate }}</nb-card-header>
@@ -79,9 +79,9 @@
               <p class="percentage">{{percentage_desc}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="propuesta_grado">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0" id="propuesta_grado">
           <nb-card class="exp-card"
             (click)="perfil_editar('propuesta_grado')">
             <nb-card-header>{{ 'GLOBAL.propuesta_grado' | translate }}</nb-card-header>
@@ -90,9 +90,9 @@
               <p class="percentage">{{percentage_proy}} %</p>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3" align="center" *ngIf="info_ente_id && inscripcion_id !== 0">
           <nb-card class="exp-card"
             (click)="perfil_editar('perfil')">
             <nb-card-header>{{ 'GLOBAL.perfil' | translate }}</nb-card-header>
@@ -100,7 +100,7 @@
               <i class="fa fa-user fa-5x"></i>
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
       </div>
     </nb-card-header>
     <nb-card-body>
@@ -119,7 +119,7 @@
 
   <!--Formularios------------------------------------------------------------->
 
-  <nb-card [hidden]="!show_info">
+  <!-- <nb-card [hidden]="!show_info">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -163,9 +163,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <nb-card [hidden]="!show_acad" *ngIf="info_ente_id">
+  <!-- <nb-card [hidden]="!show_acad" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -189,9 +189,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <nb-card [hidden]="!show_expe" *ngIf="info_ente_id">
+  <!-- <nb-card [hidden]="!show_expe" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -214,9 +214,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <!-- <nb-card [hidden]="!show_prod" *ngIf="info_ente_id">
+  <nb-card [hidden]="!show_prod" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -236,9 +236,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card> -->
+  </nb-card>
 
-  <nb-card [hidden]="!show_docu" *ngIf="info_ente_id">
+  <!-- <nb-card [hidden]="!show_docu" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -261,9 +261,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <nb-card [hidden]="!show_desc" *ngIf="info_ente_id">
+  <!-- <nb-card [hidden]="!show_desc" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -286,9 +286,9 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <nb-card [hidden]="!show_proy" *ngIf="info_ente_id">
+  <!-- <nb-card [hidden]="!show_proy" *ngIf="info_ente_id">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -311,12 +311,12 @@
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
   <!--Vista de perfil------------------------------------------------------------->
 
-  <div [hidden]="!show_profile" *ngIf="info_ente_id && show_profile">
+  <!-- <div [hidden]="!show_profile" *ngIf="info_ente_id && show_profile">
     <ngx-perfil (url_editar)="perfil_editar($event)"
       info_persona_id="{{info_ente_id}}"></ngx-perfil>
-  </div>
+  </div> -->
 </div>

@@ -83,14 +83,14 @@ export class ListProduccionAcademicaComponent implements OnInit {
           },
           width: '30%',
         },
-        EstadoEnteAutorId: {
-          title: this.translate.instant('GLOBAL.estado_autor'),
-          // type: 'string',
-          valuePrepareFunction: (value) => {
-            return value.EstadoAutorProduccionId.Nombre;
-          },
-          width: '15%',
-        },
+        // EstadoEnteAutorId: {
+        //   title: this.translate.instant('GLOBAL.estado_autor'),
+        //   // type: 'string',
+        //   valuePrepareFunction: (value) => {
+        //     return value.EstadoAutorProduccionId.Nombre;
+        //   },
+        //   width: '15%',
+        // },
         Fecha: {
           title: this.translate.instant('GLOBAL.fecha_publicacion'),
           // type: 'string;',
@@ -108,11 +108,16 @@ export class ListProduccionAcademicaComponent implements OnInit {
   }
 
   loadData(): void {
-    this.campusMidService.get('produccion_academica/' + this.user.getUser()).subscribe((res: any) => {
-    // this.campusMidService.get('produccion_academica/' + 5).subscribe((res: any) => {
+    this.campusMidService.get('produccion_academica/' + this.user.getEnte()).subscribe((res: any) => {
+    // this.campusMidService.get('produccion_academica/' + 21).subscribe((res: any) => {
+    console.info('usUARIO: ', JSON.stringify(this.user.getEnte()));
       if (res !== null) {
-        if (Object.keys(res.Body[0]).length > 0 && res.Type !== 'error') {
-          const data = <Array<ProduccionAcademicaPost>>res.Body;
+        // if (Object.keys(res.Body[0]).length > 0 && res.Type !== 'error') {
+        if (Object.keys(res > 0)) {
+          // const data = <Array<ProduccionAcademicaPost>>res.Body;
+          const data = <Array<ProduccionAcademicaPost>>res;
+          console.info('RES: ', JSON.stringify(res));
+          console.info('PRODUCCION: ', JSON.stringify(data));
           this.source.load(data);
         } else {
            Swal({
