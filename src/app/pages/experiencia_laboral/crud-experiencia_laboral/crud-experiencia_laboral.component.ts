@@ -400,7 +400,7 @@ export class CrudExperienciaLaboralComponent implements OnInit {
   searchOrganizacion(data: any): void {
     const nit = typeof data === 'string' ? data : data.data.Nit;
     this.organizacion = new Organizacion();
-    this.campusMidService.get('organizacion/identificacion/?Id=' + nit + '&TipoId=5')
+    this.campusMidService.get('organizacion/identificacion?Id=' + nit + '&TipoId=5')
       .subscribe(res => {
         const init = this.getIndexForm('Nit');
         const inombre = this.getIndexForm('NombreEmpresa');
