@@ -110,7 +110,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
   }
 
   loadInfoPostgrados(institucion) {
-    this.programaService.get('/programa_academico/?query=Institucion:' + institucion + '&limit=0')
+    this.programaService.get('programa_academico/?query=Institucion:' + institucion + '&limit=0')
       .subscribe(res => {
         if (res !== null) {
           const r = <ProgramaAcademico>res;
