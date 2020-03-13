@@ -110,7 +110,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
   }
 
   loadInfoPostgrados(institucion) {
-    this.programaService.get('/programa_academico/?query=Institucion:' + institucion + '&limit=0')
+    this.programaService.get('programa_academico/?query=Institucion:' + institucion + '&limit=0')
       .subscribe(res => {
         if (res !== null) {
           const r = <ProgramaAcademico>res;
@@ -226,7 +226,7 @@ export class CrudFormacionAcademicaComponent implements OnInit {
 
   searchDoc(data) {
     const nit = typeof data === 'string' ? data : data.data.Nit;
-    this.campusMidService.get('organizacion/identificacion/?Id=' + nit + '&TipoId=5')
+    this.campusMidService.get('organizacion/identificacion?Id=' + nit + '&TipoId=5')
       .subscribe(res => {
         const init = this.getIndexForm('Nit');
         const inombre = this.getIndexForm('NombreEmpresa');
