@@ -11,6 +11,6 @@
 export const environment = {
   production: false,
   // entorno: 'LOCAL',
-  // entorno: 'PREPROD',
-  entorno: 'PREPRODPL',
+  entorno: 'PREPROD',
+  // entorno: 'PREPRODPL',
 };
