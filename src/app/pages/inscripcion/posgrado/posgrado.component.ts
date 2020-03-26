@@ -164,7 +164,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
     this.percentage_total += Math.round(UtilidadesService.getSumArray(this.percentage_tab_acad)) / 4;
     this.percentage_total += Math.round(UtilidadesService.getSumArray(this.percentage_tab_docu)) / 4;
     this.percentage_total += Math.round(UtilidadesService.getSumArray(this.percentage_tab_proy)) / 4;
-    if (this.info_inscripcion !== undefined) {
+    if (this.info_inscripcion !== undefined && this.info_inscripcion !== null) {
       if (this.info_inscripcion.EstadoInscripcionId.Id > 1) {
         this.percentage_total = 100;
       }
