@@ -181,7 +181,7 @@
         </div>
       </div>
       <nb-tabset fullWidth (changeTab)="selectTab($event)">
-        <nb-tab tabTitle="{{ 'GLOBAL.formacion_academica' | translate }}">
+         <nb-tab tabTitle="{{ 'GLOBAL.formacion_academica' | translate }}">
           <ngx-list-formacion-academica (result)="setPercentage_acad($event,0)"></ngx-list-formacion-academica>
         </nb-tab>
         <nb-tab tabTitle="{{ 'GLOBAL.idiomas' | translate }}">
@@ -231,7 +231,7 @@
         </div>
       </div>
       <nb-tabset fullWidth (changeTab)="selectTab($event)">
-        <nb-tab tabTitle="{{ 'GLOBAL.produccion_academica' | translate }}">
+         <nb-tab tabTitle="{{ 'GLOBAL.produccion_academica' | translate }}">
           <ngx-list-produccion-academica ente_id="{{info_ente_id}}"
             (result)="setPercentage_prod($event,0)">
           </ngx-list-produccion-academica>
@@ -240,7 +240,7 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card [hidden]="!show_docu" *ngIf="info_ente_id"> <!-- && (estado_inscripcion < 2)">-->
+  <nb-card [hidden]="!show_docu" *ngIf="info_ente_id && (estado_inscripcion < 2)">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
@@ -265,7 +265,7 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card [hidden]="!show_desc" *ngIf="info_ente_id"> <!-- && (estado_inscripcion < 2)">-->
+  <nb-card [hidden]="!show_desc" *ngIf="info_ente_id && (estado_inscripcion < 2)">
     <nb-card-body>
       <div class="row">
         <div class="col-md-11">
