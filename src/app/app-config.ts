@@ -59,7 +59,7 @@ export const Config = {
     // #revisar
     DOCENTE_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/academica_jbpm/v1/',
     DOCUMENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_crud/v1/',
-    DOCUMENTO_PROGRAMA_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas/documento_programa_crud/v1/',
+    DOCUMENTO_PROGRAMA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/documento_programa_crud/v1/',
     ENTE_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/ente_crud/v1/',
     EVALUACION_INSCRIPCION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/evaluacion_inscripcion_crud/v1/',
     EXPERIENCIA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/experiencia_laboral_crud/v1/',
@@ -85,7 +85,7 @@ export const Config = {
     // #revisar
     PAGO_SERVICE: 'http://prueba.campusvirtual.udistrital.edu.co/pagos/',
     // #revisar
-    RECIBO_SERVICE: 'http://api.planestic.udistrital.edu.co:9017/v1/',
+    RECIBO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/recibo_crud/v1/',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
       CLIENTE_ID: '3r8DbyjNrVvcf5Z1CSsBGpGWzrwa',

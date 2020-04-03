@@ -112,6 +112,13 @@ export class PosgradoComponent implements OnInit, OnChanges {
         this.info_ente_id = <number>ENTE;
       } else {
         this.info_ente_id = undefined;
+        const opt: any = {
+          title: this.translate.instant('GLOBAL.aspirante'),
+          text: this.translate.instant('GLOBAL.nuevo_aspirante'),
+          icon: 'warning',
+          buttons: true,
+        };
+        Swal(opt);
       }
     }
   }
@@ -448,6 +455,14 @@ export class PosgradoComponent implements OnInit, OnChanges {
         if (inscripcion !== null  && this.info_inscripcion.Type !== 'error') {
           this.inscripcion_id = this.info_inscripcion.Id;
           this.getInfoInscripcion();
+        } else {
+          const opt: any = {
+            title: this.translate.instant('GLOBAL.aspirante'),
+            text: this.translate.instant('GLOBAL.nuevo_programa'),
+            icon: 'warning',
+            buttons: true,
+          };
+          Swal(opt);
         }
       },
         (error: HttpErrorResponse) => {
