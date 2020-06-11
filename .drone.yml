@@ -44,7 +44,7 @@ steps:
       from_secret: aws_secret_access_key
   commands:
   - apk update && apk add zip
-  - apk --no-cache add ca-certificates curl bash jq py2-pip
+  - apk --no-cache add ca-certificates curl bash jq py3-pip
   - pip install awscli
   - aws configure set aws_access_key_id $AWS_KEY_ID
   - aws configure set aws_secret_access_key $AWS_SECRET_KEY
