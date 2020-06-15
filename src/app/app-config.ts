@@ -26,7 +26,7 @@ export const Config = {
     PRODUCCION_ACADEMICA_SERVICE: 'http://localhost:9012/v1/',
     PROGRAMA_ACADEMICO_SERVICE: 'http://localhost:8101/v1/',
     PROGRAMA_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v1/',
-    SESIONES_SERVICE: 'http://localhost:8081/v1/',
+    EVENTO_SERVICE: 'http://localhost:8081/v1/',
     UBICACION_SERVICE: 'http://localhost:8085/v1/',
     // #revisar
     VALIDACION_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/academica_jbpm/v1/',
@@ -73,7 +73,7 @@ export const Config = {
     PRODUCCION_ACADEMICA_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/produccion_academica_crud/v1/',
     PROGRAMA_ACADEMICO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/programa_academico_crud/v1/',
     PROGRAMA_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v1/',
-    SESIONES_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/sesiones_crud/v1/',
+    EVENTO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/sesiones_crud/v1/',
     UBICACION_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/ubicaciones_crud/v1/',
     // #revisar
     VALIDACION_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/academica_jbpm/v1/',
@@ -120,7 +120,7 @@ export const Config = {
     PRODUCCION_ACADEMICA_SERVICE: 'http://api.planestic.udistrital.edu.co:9012/v1/',
     PROGRAMA_ACADEMICO_SERVICE: 'http://api.planestic.udistrital.edu.co:8101/v1/',
     PROGRAMA_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/oikos_crud_api/v1/',
-    SESIONES_SERVICE: 'http://api.planestic.udistrital.edu.co:8081/v1/',
+    EVENTO_SERVICE: 'http://api.planestic.udistrital.edu.co:8081/v1/',
     UBICACION_SERVICE: 'http://api.planestic.udistrital.edu.co:8085/v1/',
     // #revisar
     VALIDACION_OIKOS_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/academica_jbpm/v1/',
@@ -174,13 +174,13 @@ export const Config = {
     PRODUCCION_ACADEMICA_SERVICE: '',
     PROGRAMA_ACADEMICO_SERVICE: '',
     PROGRAMA_OIKOS_SERVICE: '',
-    SESIONES_SERVICE: '',
+    EVENTO_SERVICE: '',
     UBICACION_SERVICE: '',
     VALIDACION_OIKOS_SERVICE: '',
     CONFIGURACION_SERVICE: '',
     NOTIFICACION_SERVICE: '',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
-    PAGO_SERVICE: '',
+    PAGO_SERVICE: 'https://campusvirtual.udistrital.edu.co/pagos/',
     RECIBO_SERVICE: '',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
