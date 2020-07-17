@@ -289,7 +289,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
             (<Array<MetadatoSubtipoProduccion>>res).forEach(metadato => {
               if (Object.keys(metadato).length > 0) {
                 const field = JSON.parse(metadato.TipoMetadatoId.FormDefinition);
-                field.nombre = metadato.Id;
+                field.nombre = metadato.Id.toString();
                 this.formProduccionAcademica.campos.push(field);
               }
             });
@@ -362,7 +362,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
         campos.forEach(campo => {
           Metadatos.forEach( metadato => {
               // const field = JSON.parse(datoAdicional.DatoAdicionalSubtipoProduccion.TipoDatoAdicional.FormDefiniton);
-              if (campo.nombre === metadato.MetadatoSubtipoProduccionId.Id) {
+              if (campo.nombre === metadato.MetadatoSubtipoProduccionId.Id.toString()) {
                 campo.valor = metadato.Valor;
                 if (campo.etiqueta === 'file') {
                   campo.idFile = parseInt(metadato.Valor, 10);
@@ -432,7 +432,8 @@ export class CrudProduccionAcademicaComponent implements OnInit {
             });
             this.showToast('error', 'Error', this.translate.instant('GLOBAL.produccion_no_actualizada'));
           } else {
-            this.info_produccion_academica = <ProduccionAcademicaPost>res.Body[1];
+            this.info_produccion_academica = <ProduccionAcademicaPost>res;
+
             this.eventChange.emit(true);
             this.showToast('success', this.translate.instant('GLOBAL.actualizar'), this.translate.instant('GLOBAL.produccion_actualizada'));
           }
@@ -473,7 +474,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
             });
             this.showToast('error', 'error', this.translate.instant('GLOBAL.produccion_no_creada'));
           } else {
-            this.info_produccion_academica = <ProduccionAcademicaPost>res.Body[1];
+            this.info_produccion_academica = <ProduccionAcademicaPost>res;
             this.eventChange.emit(true);
             this.showToast('success', this.translate.instant('GLOBAL.crear'), this.translate.instant('GLOBAL.produccion_creada'));
           }
@@ -537,7 +538,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
           if (Object.keys(response).length === files.length) {
             files.forEach((file) => {
               metadatos.push({
-                MetadatoSubtipoProduccionId: file.Id,
+                MetadatoSubtipoProduccionId: {'Id': file.Id},
                 Valor: response[file.Id].Id + '', // Se castea el valor del string
               });
             });
@@ -562,9 +563,10 @@ export class CrudProduccionAcademicaComponent implements OnInit {
         });
       } else {
         const promises = [];
+        console.info(event);
         if (event.data.ProduccionAcademica) {
           // Subir archivos y verificar los
-          // console.log(event.data.ProduccionAcademica);
+          console.info(event.data.ProduccionAcademica);
           // const tempMetadatos = JSON.parse(JSON.stringify(event.data.ProduccionAcademica));
           const tempMetadatos = event.data.ProduccionAcademica;
           const keys = Object.keys(tempMetadatos);
@@ -578,7 +580,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
               }
             } else {
               metadatos.push({
-                MetadatoSubtipoProduccionId: parseInt(keys[i], 10),
+                MetadatoSubtipoProduccionId: {'Id': parseInt(keys[i], 10)},
                 Valor: tempMetadatos[keys[i]],
               });
             }
@@ -589,6 +591,7 @@ export class CrudProduccionAcademicaComponent implements OnInit {
           this.info_produccion_academica.Metadatos = metadatos;
         } else {
           this.info_produccion_academica.Metadatos = [];
+          // console.log('NO ENCUENTRA DATA');
         }
         this.info_produccion_academica.Autores = JSON.parse(JSON.stringify(this.source_authors));
         Promise.all(promises)

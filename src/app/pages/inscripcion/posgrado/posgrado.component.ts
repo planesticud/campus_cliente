@@ -452,7 +452,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
       this.inscripcionService.get('inscripcion/?query=PersonaId:' + this.info_ente_id)
       .subscribe(inscripcion => {
         this.info_inscripcion = <any>inscripcion[0];
-        if (inscripcion !== null  && this.info_inscripcion.Type !== 'error') {
+        if (Object.keys(inscripcion).length !==  0  && this.info_inscripcion.Type !== 'error') {
           this.inscripcion_id = this.info_inscripcion.Id;
           this.getInfoInscripcion();
         } else {

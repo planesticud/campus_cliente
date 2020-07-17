@@ -110,6 +110,8 @@ export class DinamicformComponent implements OnInit, OnChanges {
       console.info(c);
       this.validCampo(c);
       c.File = event.srcElement.files[0];
+    } else {
+      console.info('valor no  está definido');
     }
   }
 
@@ -142,6 +144,7 @@ export class DinamicformComponent implements OnInit, OnChanges {
   }
 
   validCampo(c): boolean {
+    // console.info(c);
     if (c.etiqueta === 'file') {
       if (c.valor === null) {
         c.valor = '';
