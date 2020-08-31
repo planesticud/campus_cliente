@@ -153,7 +153,7 @@ export class DinamicformComponent implements OnInit, OnChanges {
     }
     if (c.requerido && ((c.valor === '' && c.etiqueta !== 'file') || c.valor === null || c.valor === undefined ||
       (JSON.stringify(c.valor) === '{}' && c.etiqueta !== 'file') || JSON.stringify(c.valor) === '[]')
-      || ((c.etiqueta === 'file' && c.valor.name === undefined) && (c.etiqueta === 'file' && c.urlTemp === undefined))) {
+      || ((c.etiqueta === 'file' && c.valor.name === undefined) || (c.etiqueta === 'file' && c.urlTemp === undefined))) {
       c.alerta = '** Debe llenar este campo';
       c.clase = 'form-control form-control-danger';
       return false;
@@ -182,6 +182,9 @@ export class DinamicformComponent implements OnInit, OnChanges {
         c.alerta = 'Seleccione el campo';
         return false;
       }
+    }
+    if (c.etiqueta === 'textarea' && c.valor === null) {
+        c.valor = '';
     }
     if (c.etiqueta === 'file' && c.valor !== null && c.valor !== undefined && c.valor !== '') {
       if (c.valor.size > c.tamanoMaximo * 1024000) {
@@ -219,7 +222,6 @@ export class DinamicformComponent implements OnInit, OnChanges {
     this.data.percentage = 0;
     this.data.files = [];
     this.data.valid = true;
-
     this.normalform.campos.forEach(d => {
       requeridos = d.requerido ? requeridos + 1 : requeridos;
       if (this.validCampo(d)) {
@@ -236,8 +238,8 @@ export class DinamicformComponent implements OnInit, OnChanges {
         this.data.valid = false;
       }
     });
-
-    if (this.data.valid && (resueltos / requeridos) === 1) {
+    console.info(this.data);
+    if ((this.data.valid && (resueltos / requeridos) === 1) || (this.data.valid && requeridos === 0)) {
       if (this.normalform.modelo) {
         this.data.data[this.normalform.modelo] = result;
       } else {
