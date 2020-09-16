@@ -8,6 +8,7 @@ import { NuxeoService } from './../../@core/utils/nuxeo.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UtilidadesService } from '../../@core/utils/utilidades.service';
 import { ImplicitAutenticationService } from './../../@core/utils/implicit_autentication.service';
+import { EventoService } from '../../@core/data/evento.service';
 import { ProgramaAcademicoService } from '../../@core/data/programa_academico.service';
 import { ProgramaOikosService } from '../../@core/data/programa_oikos.service';
 import { PersonaService } from '../../@core/data/persona.service';
@@ -69,6 +70,7 @@ import { CrudPropuestaGradoComponent } from '../propuesta_grado/crud-propuesta_g
     ImplicitAutenticationService,
     NuxeoService,
     UtilidadesService,
+    EventoService,
     ProgramaAcademicoService,
     ProgramaOikosService,
     PersonaService,

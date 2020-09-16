@@ -134,7 +134,7 @@ export class PagoInscripcionComponent implements OnInit {
                               if (consulta_dato.estado === 'PAGO') {
                                 const info_comprobante = <any>{
                                   ReciboId: {Id: 1 * this.recibo_id},
-                                  TipoPagoId: {Id: 1},
+                                  TipoPagoId: {Id: 2},
                                   Aprobado: true,
                                   FechaPago: new Date(),
                                 };

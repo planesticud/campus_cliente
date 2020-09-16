@@ -1696,11 +1696,11 @@ export class ListProduccionAcademicaComponent implements OnInit {
             return value.Nombre;
           },
         },
-        EstadoEnteAutorId: {
+        Autores: {
           title: this.translate.instant(&#x27;GLOBAL.estado_autor&#x27;),
           width: &#x27;15%&#x27;,
           valuePrepareFunction: (value) &#x3D;&gt; {
-            return value.EstadoAutorProduccionId.Nombre;
+            return value[0].EstadoAutorProduccionId.Nombre;
           },
         },
         Fecha: {
@@ -1753,7 +1753,7 @@ export class ListProduccionAcademicaComponent implements OnInit {
   }
 
   onEdit(event): void {
-    if (event.data.EstadoEnteAutorId.EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 1 || event.data.EstadoEnteAutorId.EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 2) {
+    if (event.data.Autores[0].EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 1 || event.data.Autores[0].EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 2) {
       this.prod_selected &#x3D; event.data;
       this.activetab();
     } else if (event.data.EstadoEnteAutorId.EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 3) {
@@ -1769,7 +1769,7 @@ export class ListProduccionAcademicaComponent implements OnInit {
   }
 
   onDelete(event): void {
-    if (event.data.EstadoEnteAutorId.EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 1) {
+    if (event.data.Autores[0].EstadoAutorProduccionId.Id &#x3D;&#x3D;&#x3D; 1) {
       const opt: any &#x3D; {
         title: this.translate.instant(&#x27;GLOBAL.eliminar&#x27;),
         text: this.translate.instant(&#x27;GLOBAL.eliminar&#x27;) + &#x27;?&#x27;,

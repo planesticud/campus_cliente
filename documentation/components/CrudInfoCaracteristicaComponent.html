@@ -762,7 +762,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="325" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:325</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:324</a></div>
                             </td>
                         </tr>
 
@@ -876,7 +876,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="286" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:286</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:285</a></div>
                             </td>
                         </tr>
 
@@ -914,7 +914,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:300</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="299" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:299</a></div>
                             </td>
                         </tr>
 
@@ -981,7 +981,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="304" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:304</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="303" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:303</a></div>
                             </td>
                         </tr>
 
@@ -1212,7 +1212,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:290</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/pages/info_caracteristica/crud-info_caracteristica/crud-info_caracteristica.component.ts:289</a></div>
                             </td>
                         </tr>
 
@@ -1873,7 +1873,7 @@ export class CrudInfoCaracteristicaComponent implements OnInit {
       this.denied_acces &#x3D; false;
       this.campusMidService.get(&#x27;persona/consultar_complementarios/&#x27; + this.info_caracteristica_id)
         .subscribe(res &#x3D;&gt; {
-          if (res !&#x3D;&#x3D; null) {
+          if (res !&#x3D;&#x3D; null &amp;&amp; JSON.stringify(res) !&#x3D;&#x3D; &#x27;[{}]&#x27;) {
             this.datosGet &#x3D; &lt;InfoCaracteristicaGet&gt;res;
             this.info_info_caracteristica &#x3D; &lt;InfoCaracteristica&gt;res;
             this.info_info_caracteristica.Ente &#x3D; (1 * this.info_caracteristica_id);
@@ -1970,7 +1970,6 @@ export class CrudInfoCaracteristicaComponent implements OnInit {
           info_info_caracteristica_post.Lugar &#x3D; {
             Lugar: info_info_caracteristica_post.LugarAnt,
           };
-          console.info(JSON.stringify(info_info_caracteristica_post));
           this.campusMidService.post(&#x27;persona/guardar_complementarios&#x27;, info_info_caracteristica_post)
             .subscribe(res &#x3D;&gt; {
               if (res !&#x3D;&#x3D; null) {

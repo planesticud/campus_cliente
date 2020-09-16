@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { EventoService } from '../../../@core/data/evento.service'
 import { CampusMidService } from '../../../@core/data/campus_mid.service';
 import { UtilidadesService } from '../../../@core/utils/utilidades.service';
 import { ProgramaOikosService } from '../../../@core/data/programa_oikos.service';
@@ -93,6 +94,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
   constructor(
     private translate: TranslateService,
     private router: Router,
+    private evento: EventoService,
     private campusMidService: CampusMidService,
     private inscripcionService: InscripcionService,
     private userService: UserService,
@@ -189,26 +191,62 @@ export class PosgradoComponent implements OnInit, OnChanges {
   }
 
   loadInfoPostgrados() {
-    this.programaService.get('dependencia_tipo_dependencia/?query=TipoDependenciaId:15&limit=0')
-      .subscribe(res => {
-        const r = <any>res;
-        if (res !== null && r.Type !== 'error') {
-          const programaPosgrados = <Array<any>>res;
-          programaPosgrados.forEach(element => {
-            this.posgrados.push(element.DependenciaId);
-          });
-        }
-      },
-        (error: HttpErrorResponse) => {
-          Swal({
-            type: 'error',
-            title: error.status + '',
-            text: this.translate.instant('ERROR.' + error.status),
-            footer: this.translate.instant('GLOBAL.cargar') + '-' +
-              this.translate.instant('GLOBAL.programa_academico'),
-            confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
-          });
+    this.evento.get('calendario_evento?query=TipoEventoId.Nombre:Inscripción,Activo:true&limit=0')
+    .subscribe(resEvento => {
+      if (resEvento !== null && JSON.stringify(resEvento) !== '[{}]') {
+        const eventos = <Array<any>>resEvento;
+        const hoy = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+        eventos.forEach(elemEvento => {
+          const inicio = formatDate(elemEvento.FechaInicio, 'yyyy/MM/dd', 'en');
+          const fin = formatDate(elemEvento.FechaFin, 'yyyy/MM/dd', 'en');
+          if ((inicio < hoy) && (hoy < fin)) {
+            this.evento.get('tipo_evento?query=Id:' + elemEvento.TipoEventoId.Id)
+            .subscribe(resTipEvento => {
+              if (resTipEvento !== null && JSON.stringify(resTipEvento) !== '[{}]') {
+                const tipo = <any>resTipEvento[0];
+                this.programaService.get('dependencia/?query=Id:' + tipo.DependenciaId)
+                .subscribe(res => {
+                  const r = <any>res[0];
+                  if (res !== null && JSON.stringify(res) !== '[{}]') {
+                    this.posgrados.push(r);
+                  }
+                },
+                  (error: HttpErrorResponse) => {
+                    Swal({
+                      type: 'error',
+                      title: error.status + '',
+                      text: this.translate.instant('ERROR.' + error.status),
+                      footer: this.translate.instant('GLOBAL.cargar') + '-' +
+                        this.translate.instant('GLOBAL.programa_academico'),
+                      confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+                    });
+                  });
+              }
+            },
+              (error: HttpErrorResponse) => {
+                Swal({
+                  type: 'error',
+                  title: error.status + '',
+                  text: this.translate.instant('ERROR.' + error.status),
+                  footer: this.translate.instant('GLOBAL.cargar') + '-' +
+                    this.translate.instant('GLOBAL.tipo_evento'),
+                  confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+                });
+              });
+          }
         });
+      }
+    },
+      (error: HttpErrorResponse) => {
+        Swal({
+          type: 'error',
+          title: error.status + '',
+          text: this.translate.instant('ERROR.' + error.status),
+          footer: this.translate.instant('GLOBAL.cargar') + '-' +
+            this.translate.instant('GLOBAL.evento'),
+          confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
+        });
+      });
   }
 
   getInfoInscripcion() {
@@ -452,7 +490,7 @@ export class PosgradoComponent implements OnInit, OnChanges {
       this.inscripcionService.get('inscripcion/?query=PersonaId:' + this.info_ente_id)
       .subscribe(inscripcion => {
         this.info_inscripcion = <any>inscripcion[0];
-        if (inscripcion !== null  && this.info_inscripcion.Type !== 'error') {
+        if (Object.keys(inscripcion).length !==  0  && this.info_inscripcion.Type !== 'error') {
           this.inscripcion_id = this.info_inscripcion.Id;
           this.getInfoInscripcion();
         } else {

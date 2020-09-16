@@ -83,7 +83,7 @@ export const Config = {
     NOTIFICACION_SERVICE: 'ws://pruebasapi.intranetoas.udistrital.edu.co:8116/ws/join',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     // #revisar
-    PAGO_SERVICE: 'http://prueba.campusvirtual.udistrital.edu.co/pagos/',
+    PAGO_SERVICE: 'https://campusvirtual.udistrital.edu.co/pagospr/',
     // #revisar
     RECIBO_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/apioas/recibo_crud/v1/',
     TOKEN: {
@@ -130,7 +130,7 @@ export const Config = {
     NOTIFICACION_SERVICE: 'ws://pruebasapi.intranetoas.udistrital.edu.co:8116/ws/join',
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     // #revisar
-    PAGO_SERVICE: 'http://prueba.campusvirtual.udistrital.edu.co/pagos/',
+    PAGO_SERVICE: 'https://campusvirtual.udistrital.edu.co/pagospr/',
     // #revisar
     RECIBO_SERVICE: 'http://api.planestic.udistrital.edu.co:9017/v1/',
     TOKEN: {
