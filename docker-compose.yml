@@ -1,6 +1,6 @@
 version: '3'
 networks:
- aplicaciones:
+ campus_virtual:
 
 services:
   campus-cliente:
@@ -9,7 +9,7 @@ services:
        dockerfile: Planestic
      container_name: campus-cliente
      networks:
-        - aplicaciones
+        - campus_virtual
      labels:
         - "traefik.enable=true"
         - "traefik.http.routers.campus-cliente.rule=Host(`campus.planestic.udistrital.edu.co`)"
@@ -19,5 +19,5 @@ services:
         - "traefik.http.routers.campus-cliente.tls.certresolver=le"
         - "traefik.http.services.campus-cliente.loadbalancer.server.port=80"   
 networks:
-  aplicaciones:
+  campus_virtual:
     external: true
